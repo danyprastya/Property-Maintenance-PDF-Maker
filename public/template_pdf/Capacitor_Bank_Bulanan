@@ -1,0 +1,53 @@
+{
+  "checklist": [
+    {
+      "no": 1,
+      "Item Checklist": "Kebersihan ruangan & Perangkat Capasitor Bank",
+      "Tolak Ukur": "Bersih, Indah dan Rapi",
+      "jawaban": "Bersih, Indah dan Rapi",
+      "deskripsi": "Ruangan dan perangkat dalam kondisi bersih, dan rapi"
+    },
+    {
+      "no": 2,
+      "Item Checklist": "Periksa operasional exhause fan",
+      "Tolak Ukur": "Normal, Suara Halus",
+      "jawaban": "Normal, Suara Halus",
+      "deskripsi": "Exhaust fan beroperasi dengan normal dan baik"
+    },
+    {
+      "no": 3,
+      "Item Checklist": "Periksa setting regulator",
+      "Tolak Ukur": "> 0,98",
+      "jawaban": "> 0,98",
+      "deskripsi": ""
+    },
+    {
+      "no": 4,
+      "Item Checklist": "Periksa factor daya PLN (cos Phi)",
+      "Tolak Ukur": "Sesuai input PLN",
+      "jawaban": "Sesuai input PLN",
+      "deskripsi": "cos Phi sesuai dengan input dari PLN"
+    },
+    {
+      "no": 5,
+      "Item Checklist": "Kapasitas per step (KVArh/step)",
+      "Tolak Ukur": "Operasi Normal",
+      "jawaban": "Normal",
+      "deskripsi": "Operasi Normal"
+    },
+    {
+      "no": 6,
+      "Item Checklist": "Periksa visual kekencangan terminasi dan koneksi kabel",
+      "Tolak Ukur": "Sesuai spesifikasi",
+      "jawaban": "Sesuai spesifikasi",
+      "deskripsi": ""
+    },
+    {
+      "no": 7,
+      "Item Checklist": "Periksa visual kekencangan terminasi dan koneksi kabe",
+      "Tolak Ukur": "Kencang, baik, dan rapi",
+      "jawaban": "Kencang, baik, dan rapi",
+      "deskripsi": "Terminasi dan koneksi kabel dalam kondisi kencang, baik, dan rapi"
+    }
+  ]
+}

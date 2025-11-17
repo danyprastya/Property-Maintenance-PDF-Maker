@@ -1,0 +1,39 @@
+{
+  "checklist": [
+    {
+      "no": 1,
+      "Item Checklist": "Cubicle/Switch Gear - Operasi Otomatis",
+      "Tolak Ukur": "Berfungsi/normal",
+      "jawaban": "Berfungsi/normal",
+      "deskripsi": "Switch Gear beroperasi dengan normal"
+    },
+    {
+      "no": 2,
+      "Item Checklist": "Cubicle/Switch Gear - Operasi Manual",
+      "Tolak Ukur": "Berfungsi/normal",
+      "jawaban": "Berfungsi/normal",
+      "deskripsi": "Switch Gear Manual beroperasi dengan normal"
+    },
+    {
+      "no": 3,
+      "Item Checklist": "Cubicle/Switch Gear - Temperature Body",
+      "Tolak Ukur": "≤ 70 °C",
+      "jawaban": "≤ 70 °C",
+      "deskripsi": "Suhu body switch gear tidak melebihi 70 °C"
+    },
+    {
+      "no": 4,
+      "Item Checklist": "Cubicle/Switch Gear - Keadaan Kabel",
+      "Tolak Ukur": "≤ 70 °C",
+      "jawaban": "≤ 70 °C",
+      "deskripsi": "Temperatur kabel tidak melebihi 70 °C"
+    },
+    {
+      "no": 5,
+      "Item Checklist": "Kebersihan ruangan dan perangkat",
+      "Tolak Ukur": "Bersih, Indah dan Rapi",
+      "jawaban": "Bersih, Indah dan Rapi",
+      "deskripsi": "Ruangan dan perangkat dalam kondisi bersih, dan rapi"
+    }
+  ]
+}

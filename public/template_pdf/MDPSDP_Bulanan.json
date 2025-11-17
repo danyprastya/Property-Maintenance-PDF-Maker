@@ -1,0 +1,81 @@
+{
+  "checklist": [
+    {
+      "no": 1,
+      "Item Checklist": "Komponen pengaman",
+      "Tolak Ukur": "Tidak panas",
+      "jawaban": "Tidak panas",
+      "deskripsi": "KOMPONEN PENGAMAN PERANGKAT TIDAK PANAS"
+    },
+    {
+      "no": 2,
+      "Item Checklist": "Fuse, CB, MCCB",
+      "Tolak Ukur": "≤ 70 °C dan Tidak Putus",
+      "jawaban": "≤ 70 °C dan Tidak Putus",
+      "deskripsi": "BREAKER PERANGKAT MEMILIKI SUHU 35 DERAJAT DAN BERFUNGSI NORMAL"
+    },
+    {
+      "no": 3,
+      "Item Checklist": "Keadaan instalasi kabel",
+      "Tolak Ukur": "≤ 70 °C dan Rapi",
+      "jawaban": "≤ 70 °C dan Rapi",
+      "deskripsi": "SUHU KABEL DI 35 DERAJAT,PANEL RAPIH"
+    },
+    {
+      "no": 4,
+      "Item Checklist": "Pengukuran Tegangan AC R – S/ S – T/ T - R",
+      "Tolak Ukur": "380 V ± 10%",
+      "jawaban": "380",
+      "deskripsi": "R-S 382 /S-T 379/T-R 384"
+    },
+    {
+      "no": 5,
+      "Item Checklist": "Frekuensi",
+      "Tolak Ukur": "50 HZ ± 5%",
+      "jawaban": "50",
+      "deskripsi": "FREKUENSI DI 50 Hz"
+    },
+    {
+      "no": 6,
+      "Item Checklist": "Arus R/S/T",
+      "Tolak Ukur": "Sesuai standar",
+      "jawaban": "56.4,119.9,85.6",
+      "deskripsi": "ARUS R 56.4 S 119.9 T 85.6"
+    },
+    {
+      "no": 7,
+      "Item Checklist": "Panel TM / Switch GEAR",
+      "Tolak Ukur": "Berfungsi",
+      "jawaban": "Berfungsi",
+      "deskripsi": "PANEL TM BERFUNGSI DENGAN BAIK"
+    },
+    {
+      "no": 8,
+      "Item Checklist": "Lampu indikator input & output",
+      "Tolak Ukur": "Berfungsi/Menyala",
+      "jawaban": "Berfungsi / Menyala",
+      "deskripsi": "LAMPU INDIKATOR INPUT DAN OUTPUT MENYALA"
+    },
+    {
+      "no": 9,
+      "Item Checklist": "Meter tegangan",
+      "Tolak Ukur": "Berfungsi",
+      "jawaban": "Berfungsi",
+      "deskripsi": "METER TEGANGAN DI PANEL BERFUNGSI NORMAL"
+    },
+    {
+      "no": 10,
+      "Item Checklist": "Meter arus",
+      "Tolak Ukur": "Berfungsi",
+      "jawaban": "Berfungsi",
+      "deskripsi": "METER ARUS DI PANEL BERFUNGSI NORMAL"
+    },
+    {
+      "no": 11,
+      "Item Checklist": "Kebersihan ruangan dan perangkat",
+      "Tolak Ukur": "Bersih. Indah. dan Rapi",
+      "jawaban": "Bersih. Indah. dan Rapi",
+      "deskripsi": "RUANGAN PERANGKAT BERSIH DAN RAPIH"
+    }
+  ]
+}

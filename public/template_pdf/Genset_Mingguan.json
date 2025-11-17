@@ -1,0 +1,137 @@
+{
+    "checklist": [ 
+    {
+      "no": 1,
+      "Item Checklist": "Pemeriksaan Genset",
+      "Tolak Ukur": "Genset bersih, Level oli dalam batas MIN - MAX, Kekencangan & kondisi tali kipas",
+      "jawaban": "Normal",
+      "deskripsi": "perangkat genset dalam kondisi bersih dan normal"
+    },
+    {
+      "no": 2,
+      "Item Checklist": "Pemeriksaan batere starter",
+      "Tolak Ukur": "Mur/baut pole Batt kencang, Level Elekt Batt dalam batas MIN - MAX",
+      "jawaban": "Kencang",
+      "deskripsi": "kondisi mur/baut pole kencang dan level elentrolit batrai dalam batas maximum"
+    },
+    {
+      "no": 3,
+      "Item Checklist": "Pemeriksaan tangki BBM",
+      "Tolak Ukur": "Tidak ada indikasi kebocoran, Pompa BBM berfungsi normal",
+      "jawaban": "Tidak Ada",
+      "deskripsi": "tanki bbm normal dan tidak bocor"
+    },
+    {
+      "no": 4,
+      "Item Checklist": "Pemeriksaan level BBM (Tangki Harian)",
+      "Tolak Ukur": "Tangki Harian (LITER)",
+      "jawaban": "223 liter",
+      "deskripsi": "level tanki harian bbm memenuhi 80% dari kapasitas maximum"
+    },
+    {
+      "no": 5,
+      "Item Checklist": "Pemeriksaan level BBM (Tangki Bulanan)",
+      "Tolak Ukur": "Tangki Bulanan (LITER)",
+      "jawaban": "500 liter",
+      "deskripsi": "level tanki bulanan bbm memenuhi 100% dari kapasitas maximum"
+    },
+    {
+      "no": 6,
+      "Item Checklist": "Pemeriksaan Panel ATS-AMF",
+      "Tolak Ukur": "Tidak ada indikasi alarm/anomali, Panel ATS-AMF bersih",
+      "jawaban": "Tidak Ada",
+      "deskripsi": "tidak ada alarm pada panel ats dan amf"
+    },
+    {
+      "no": 7,
+      "Item Checklist": "Pencatatan jam operasi genset",
+      "Tolak Ukur": "Mencatat",
+      "jawaban": "1",
+      "deskripsi": "waktu oprasi genset pada minggu ke 1 januari 2024 adalah 1 jam"
+    },
+    {
+      "no": 8,
+      "Item Checklist": "Heater",
+      "Tolak Ukur": "±40 °C",
+      "jawaban": "39",
+      "deskripsi": "temperatur heater genset 39°c"
+    },
+    {
+      "no": 9,
+      "Item Checklist": "Running test (± 15 M): Test manual start/ stop",
+      "Tolak Ukur": "Berfungsi",
+      "jawaban": "Berfungsi",
+      "deskripsi": "test manual start / stop berfungsi"
+    },
+    {
+      "no": 10,
+      "Item Checklist": "Running test (± 15 M): Test auto start/ stop",
+      "Tolak Ukur": "Berfungsi",
+      "jawaban": "Berfungsi",
+      "deskripsi": "test auto start /stop berfungsi"
+    },
+    {
+      "no": 11,
+      "Item Checklist": "Running test (± 15 M): Tegangan output",
+      "Tolak Ukur": "220 / 380 Volt ac ± 5%",
+      "jawaban": "380",
+      "deskripsi": "tegangan output saat runing test adalah 380v"
+    },
+    {
+      "no": 12,
+      "Item Checklist": "Running test (± 15 M): Tekanan oli",
+      "Tolak Ukur": ">2.5 Psi",
+      "jawaban": "9",
+      "deskripsi": "tekanan oli normal"
+    },
+    {
+      "no": 13,
+      "Item Checklist": "Running test (± 15 M): Arus beban",
+      "Tolak Ukur": "R. S. T",
+      "jawaban": "Yes",
+      "deskripsi": "Arus R : 180A, Arus S : 176 A, Arus T : 168A"
+    },
+    {
+      "no": 14,
+      "Item Checklist": "Running test (± 15 M): Warna gas buang",
+      "Tolak Ukur": "Berwarna Putih",
+      "jawaban": "Putih",
+      "deskripsi": "asap berwarna putih"
+    },
+    {
+      "no": 15,
+      "Item Checklist": "Running test (± 15 M): Suara mesin",
+      "Tolak Ukur": "Rata / halus 101.5 db",
+      "jawaban": "Halus",
+      "deskripsi": "Suara mesin halus dan normal"
+    },
+    {
+      "no": 16,
+      "Item Checklist": "Temperatur air",
+      "Tolak Ukur": "< 90 °C",
+      "jawaban": "65",
+      "deskripsi": "Temperatur air normal dan dibawah standar"
+    },
+    {
+      "no": 17,
+      "Item Checklist": "Temperatur Koneksi Kabel Output panel genset",
+      "Tolak Ukur": "< 70 derajat",
+      "jawaban": "35",
+      "deskripsi": "Kondisi suhu kabel normal, dibawah 70 derajat"
+    },
+    {
+      "no": 18,
+      "Item Checklist": "Catatan Kesimpulan",
+      "Tolak Ukur": "Tuliskan Kesimpulan",
+      "jawaban": "perangkat genset dalam kondisi beroprasi normal",
+      "deskripsi": "genset dalam kondisi normal"
+    },
+    {
+      "no": 19,
+      "Item Checklist": "Catatan Rekomendasi",
+      "Tolak Ukur": "",
+      "jawaban": "perangkat genset perlu di lakukan perawatan rutin mingguan dan normal",
+      "deskripsi": "genset dalam kondisi normal"
+    }
+    ]
+}

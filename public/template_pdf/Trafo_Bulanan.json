@@ -1,0 +1,88 @@
+{
+  "checklist": [
+    {
+      "no": 1,
+      "Item Checklist": "Trafo Daya - Level oli",
+      "Tolak Ukur": "Full",
+      "jawaban": "Full",
+      "deskripsi": "Kondisi Trafo Daya dalam keadaan Full dan Normal"
+    },
+    {
+      "no": 2,
+      "Item Checklist": "Trafo Daya - Temperatur",
+      "Tolak Ukur": "Temperature ≤ 50 °C",
+      "jawaban": "",
+      "deskripsi": ""
+    },
+    {
+      "no": 3,
+      "Item Checklist": "Trafo Daya - Container",
+      "Tolak Ukur": "Tidak Bocor",
+      "jawaban": "Tidak Bocor",
+      "deskripsi": "Kondisi Trafo Daya dalam keadaan Tidak Bocor"
+    },
+    {
+      "no": 4,
+      "Item Checklist": "Trafo Daya - Kondisi Silicagel",
+      "Tolak Ukur": "Warna Hijau",
+      "jawaban": "Warna Hijau",
+      "deskripsi": "Kondisi Baik dan Normal"
+    },
+    {
+      "no": 5,
+      "Item Checklist": "Visual Check Trafo - Keadaan dan Temperatur Ruang",
+      "Tolak Ukur": "Rapi dan Temperature < 35 °C",
+      "jawaban": "",
+      "deskripsi": ""
+    },
+    {
+      "no": 6,
+      "Item Checklist": "Visual Check Trafo - Suara Dengung",
+      "Tolak Ukur": "Normal (Tidak Berdenung)",
+      "jawaban": "Normal",
+      "deskripsi": "Kondisi Dalam Baik dan Normal"
+    },
+    {
+      "no": 7,
+      "Item Checklist": "Visual Check Trafo - Keadaan Kabel",
+      "Tolak Ukur": "Temperature ≤ 50 °C",
+      "jawaban": "",
+      "deskripsi": ""
+    },
+    {
+      "no": 8,
+      "Item Checklist": "Visual Check Trafo - Bau Hangus / Terbakar",
+      "Tolak Ukur": "Tidak Ada Bau",
+      "jawaban": "Tidak Ada Bau Hangus / Terbakar",
+      "deskripsi": "Kondisi Tidak ada Bau Hangus / Terbakar"
+    },
+    {
+      "no": 9,
+      "Item Checklist": "Perkabelan Instalasi Daya - Keadaan isolasi kabel",
+      "Tolak Ukur": "Tidak lecet / Aus",
+      "jawaban": "Tidak Lecet / Aus",
+      "deskripsi": "Kondisi Tidak Lecet / Aus"
+    },
+    {
+      "no": 10,
+      "Item Checklist": "Perkabelan Instalasi Daya - Temperatur kabel daya",
+      "Tolak Ukur": "Temperature ≤ 50 °C",
+      "jawaban": "",
+      "deskripsi": ""
+    },
+    {
+      "no": 11,
+      "Item Checklist": "Perkabelan Instalasi Daya - Kerapihan kabel dan saluran",
+      "Tolak Ukur": "Bersih. Indah. dan Rapi",
+      "jawaban": "Bersih. Indah. dan Rapi",
+      "deskripsi": "Kondisi Bersih. Indah. dan Rapi"
+    },
+    {
+      "no": 12,
+      "Item Checklist": "Kebersihan ruangan dan perangkat",
+      "Tolak Ukur": "Bersih. Indah. dan Rapi",
+      "jawaban": "Bersih. Indah. dan Rapi",
+      "deskripsi": "Kondisi Bersih. Indah. dan Rapi"
+    }
+  ]
+}

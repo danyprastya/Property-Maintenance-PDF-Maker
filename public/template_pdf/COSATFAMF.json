@@ -1,0 +1,39 @@
+{
+  "checklist": [
+    {
+      "no": 1,
+      "Item Checklist": "COS/ ATS/AMF - Operasi otomatis",
+      "Tolak Ukur": "Berfungsi/normal",
+      "jawaban": "Berfungsi/normal",
+      "deskripsi": "Pengoperasian otomatis berjalan dengan normal"
+    },
+    {
+      "no": 2,
+      "Item Checklist": "COS/ ATS/AMF - Operasi Manual",
+      "Tolak Ukur": "Berfungsi/normal",
+      "jawaban": "Berfungsi/normal",
+      "deskripsi": "Pengoperasian Manual berjalan dengan normal"
+    },
+    {
+      "no": 3,
+      "Item Checklist": "COS/ ATS/AMF - Kondisi CB (Circuit Braker)",
+      "Tolak Ukur": "Berfungsi / Tidak Panas",
+      "jawaban": "Berfungsi/Tidak Panas",
+      "deskripsi": "Kondisi Circuit Breaker Berfungsi Normal dan Tidak Panas"
+    },
+    {
+      "no": 4,
+      "Item Checklist": "COS/ ATS/AMF - Kondisi Visual",
+      "Tolak Ukur": "Tidak ada loncatan bunga api",
+      "jawaban": "Tidak ada loncatan bunga api",
+      "deskripsi": "Kondisi Perangkat Tidak Ada Loncatan Bunga Api"
+    },
+    {
+      "no": 5,
+      "Item Checklist": "Kebersihan ruangan dan perangkat",
+      "Tolak Ukur": "Ruangan Bersih, Indah dan Rapi",
+      "jawaban": "Ruangan Bersih, Indah dan Rapi",
+      "deskripsi": "Ruangan Perangkat Bersih, dan Rapi"
+    }
+  ]
+}

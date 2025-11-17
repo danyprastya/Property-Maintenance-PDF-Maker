@@ -1,0 +1,81 @@
+{
+  "checklist": [
+    {
+      "no": 1,
+      "Item Checklist": "Volume BBM (Tangki Bulanan)",
+      "Tolak Ukur": "Tangki Bulanan (LITER)",
+      "jawaban": "1500 LITER",
+      "deskripsi": "SISA BBM TANGKI BULANAN 25% DARI KAPASITAS TANGKI"
+    },
+    {
+      "no": 2,
+      "Item Checklist": "Running test (± 15 M): Test manual start / stop",
+      "Tolak Ukur": "Berfungsi",
+      "jawaban": "Berfungsi",
+      "deskripsi": "TES MANUAL START/STOP BERFUNGSI DENGAN BAIK"
+    },
+    {
+      "no": 3,
+      "Item Checklist": "Running test (± 15 M): Test auto start / stop",
+      "Tolak Ukur": "Berfungsi",
+      "jawaban": "Berfungsi",
+      "deskripsi": "TEST AUTO START/STOP BERFUNGSI DENGAN BAIK"
+    },
+    {
+      "no": 4,
+      "Item Checklist": "Running test (± 15 M): Tegangan output",
+      "Tolak Ukur": "220 / 380 Volt ac ± 5%",
+      "jawaban": "380",
+      "deskripsi": "TEGANGAN OUTPUT DI 380 VAC"
+    },
+    {
+      "no": 5,
+      "Item Checklist": "Running test (± 15 M): Tekanan oli",
+      "Tolak Ukur": ">2.5 PSI",
+      "jawaban": "7,5",
+      "deskripsi": "TEKANAN OLI GENSET PADA SAAT RUNING TEST DI 7.5 PSI"
+    },
+    {
+      "no": 6,
+      "Item Checklist": "Running test (± 15 M): Arus beban",
+      "Tolak Ukur": "R. S. T",
+      "jawaban": "Yes",
+      "deskripsi": "PEMANASAN GENSET TANPA BEBAN"
+    },
+    {
+      "no": 7,
+      "Item Checklist": "Running test (± 15 M): Warna gas buang",
+      "Tolak Ukur": "Berwarna Putih",
+      "jawaban": "Putih",
+      "deskripsi": "WARNA GAS BUANG GENSET PUTIH"
+    },
+    {
+      "no": 8,
+      "Item Checklist": "Running test (± 15 M): Suara mesin",
+      "Tolak Ukur": "Rata/ halus 101.5 db",
+      "jawaban": "Halus",
+      "deskripsi": "SUARA MESIN GENSET HALUS DI 101.5 db"
+    },
+    {
+      "no": 9,
+      "Item Checklist": "Running test (± 15 M): Temperatur air",
+      "Tolak Ukur": "< 90 °C",
+      "jawaban": "64",
+      "deskripsi": "TEMPERATUR AIR NORMAL DI 70 DERAJAT"
+    },
+    {
+      "no": 10,
+      "Item Checklist": "Catatan Kesimpulan",
+      "Tolak Ukur": "Tuliskan Kesimpulan",
+      "jawaban": "Perangkat genset dalam kondisi beroperasi normal",
+      "deskripsi": ""
+    },
+    {
+      "no": 11,
+      "Item Checklist": "Catatan Rekomendasi",
+      "Tolak Ukur": "Tuliskan Rekomendasi",
+      "jawaban": "Perangkat genset perlu dilakukan perawatan rutin mingguan dan bulanan agar dapat beroperasi dengan normal dan baik",
+      "deskripsi": ""
+    }
+  ]
+}

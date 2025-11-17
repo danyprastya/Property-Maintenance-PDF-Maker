@@ -1,0 +1,102 @@
+{
+  "checklist": [
+    {
+      "no": 1,
+      "Item Checklist": "Kondisi Fisik Air Finial - Roof Top",
+      "Tolak Ukur": "Bersih",
+      "jawaban": "Bersih",
+      "deskripsi": "Kondisi Bersih"
+    },
+    {
+      "no": 2,
+      "Item Checklist": "Kondisi Fisik Air Finial - Besi tiang ground di sisi kanan depan gedung",
+      "Tolak Ukur": "Runcing",
+      "jawaban": "Runcing",
+      "deskripsi": "Kondisi Runcing"
+    },
+    {
+      "no": 3,
+      "Item Checklist": "Kondisi Fisik Air Finial - Besi tiang ground di sisi kiri depan gedung",
+      "Tolak Ukur": "Runcing",
+      "jawaban": "Runcing",
+      "deskripsi": "Kondisi Runcing"
+    },
+    {
+      "no": 4,
+      "Item Checklist": "Kondisi Fisik Air Finial - Besi tiang ground di sisi kanan belakang gedung",
+      "Tolak Ukur": "Runcing",
+      "jawaban": "Runcing",
+      "deskripsi": "Kondisi Runcing"
+    },
+    {
+      "no": 5,
+      "Item Checklist": "Kondisi Fisik Air Finial - Besi tiang ground di sisi kiri belakang gedung",
+      "Tolak Ukur": "Runcing",
+      "jawaban": "Runcing",
+      "deskripsi": "Kondisi Runcing"
+    },
+    {
+      "no": 6,
+      "Item Checklist": "Fisik Sambungan - Air finial dengan saluran",
+      "Tolak Ukur": "Bersih & Kencang (Tidak berkarat/berjamur)",
+      "jawaban": "Bersih & Kencang (Tidak berkarat/berjamur)",
+      "deskripsi": "Kondisi Bersih & Kencang (Tidak berkarat/berjamur)"
+    },
+    {
+      "no": 7,
+      "Item Checklist": "Fisik Sambungan - Saluran dengan terminal",
+      "Tolak Ukur": "Bersih & Kencang (Tidak berkarat/berjamur)",
+      "jawaban": "Bersih & Kencang (Tidak berkarat/berjamur)",
+      "deskripsi": "Kondisi Bersih & Kencang (Tidak berkarat/berjamur)"
+    },
+    {
+      "no": 8,
+      "Item Checklist": "Fisik Isolator",
+      "Tolak Ukur": "Baik tidak pecah",
+      "jawaban": "Baik tidak pecah",
+      "deskripsi": "Kondisi Baik tidak pecah"
+    },
+    {
+      "no": 9,
+      "Item Checklist": "Fisik terminal ground perangkat tiap lantai",
+      "Tolak Ukur": "Bersih. Kencang. baik & tidak berkarat/berjamur",
+      "jawaban": "Bersih. Kencang. baik & tidak berkarat/berjamur",
+      "deskripsi": "Kondisi Bersih. Kencang. baik & tidak berkarat/berjamur"
+    },
+    {
+      "no": 10,
+      "Item Checklist": "Fisik terminal Bak grounding",
+      "Tolak Ukur": "Bersih. Kencang. baik & tidak berkarat/berjamur",
+      "jawaban": "Bersih. Kencang. baik & tidak berkarat/berjamur",
+      "deskripsi": "Kondisi Bersih. Kencang. baik & tidak berkarat/berjamur"
+    },
+    {
+      "no": 11,
+      "Item Checklist": "Tahanan pentanahan - Penangkal petir Gedung",
+      "Tolak Ukur": "<5 Ohm",
+      "jawaban": "",
+      "deskripsi": ""
+    },
+    {
+      "no": 12,
+      "Item Checklist": "Tahanan pentanahan - Grounding",
+      "Tolak Ukur": "<5 Ohm",
+      "jawaban": "",
+      "deskripsi": ""
+    },
+    {
+      "no": 13,
+      "Item Checklist": "Catatan kesimpulan",
+      "Tolak Ukur": "Tulis catatan kesimpulan",
+      "jawaban": "",
+      "deskripsi": ""
+    },
+    {
+      "no": 14,
+      "Item Checklist": "Catatan rekomendasi",
+      "Tolak Ukur": "Tulis catatan rekomendasi",
+      "jawaban": "",
+      "deskripsi": ""
+    }
+  ]
+}
