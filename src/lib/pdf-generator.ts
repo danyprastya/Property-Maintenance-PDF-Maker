@@ -74,9 +74,10 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
     "TCU 1": "1611",
     "TCU 2": "1618",
     "TCU 3": "1608",
-    "Gedung Menara Risti Idex": "1547",
+    "GD Menara Risti Idex": "1547",
+    "Telkom Cisanggarung": "", // Bisa diisi jika ada kode SIMA
   };
-  const kodeGedung = kodeGedungMap[building] || "";
+  const kodeGedung = kodeGedungMap[building] || "-"; // Default ke "-" jika tidak ada mapping
   doc.text(`KODE GEDUNG (SIMA)`, 15, yPos);
   doc.text(`: ${kodeGedung}`, 80, yPos);
   yPos += 5;

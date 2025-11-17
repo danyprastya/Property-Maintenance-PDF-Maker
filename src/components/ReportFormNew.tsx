@@ -80,6 +80,14 @@ export default function ReportFormNew({
     entries: [],
   });
 
+  // Dua variabel terpisah untuk gedung
+  const [selectedPresetBuilding, setSelectedPresetBuilding] = useState<string>(buildings[0]); // Dari dropdown
+  const [manualBuildingInput, setManualBuildingInput] = useState<string>(""); // Dari input manual
+  const [isBuildingDropdownOpen, setIsBuildingDropdownOpen] = useState(false);
+
+  // Computed value: Prioritas manual input, fallback ke preset
+  const finalBuildingName = manualBuildingInput || selectedPresetBuilding;
+
   // Load form template when type changes
   async function onGenerateForm(e: React.FormEvent) {
     e.preventDefault();
@@ -112,8 +120,14 @@ export default function ReportFormNew({
         photoDataUrl: "",
       }));
       setFormState((prev) => ({ ...prev, entries }));
+      
+      // Debug: Log building value sebelum dikirim
+      console.log("🏢 Generate Form - Manual Input:", manualBuildingInput);
+      console.log("🏢 Generate Form - Preset Selected:", selectedPresetBuilding);
+      console.log("🏢 Generate Form - Final Building:", finalBuildingName);
+      
       onGenerated?.({
-        building: formState.building,
+        building: finalBuildingName, // Gunakan computed value
         formType: composed,
         periodType: formState.periodType,
         week: formState.week,
@@ -222,15 +236,60 @@ export default function ReportFormNew({
                 Gedung
               </Label>
               <Select
-                value={formState.building}
-                onValueChange={(v) =>
-                  setFormState((prev) => ({ ...prev, building: v }))
-                }
+                value={selectedPresetBuilding}
+                onValueChange={(v) => {
+                  setSelectedPresetBuilding(v);
+                  setManualBuildingInput(""); // Clear manual when preset selected
+                }}
+                open={isBuildingDropdownOpen}
+                onOpenChange={setIsBuildingDropdownOpen}
               >
                 <SelectTrigger className="h-9 sm:h-10 text-sm transition-all duration-150 hover:border-gray-400 dark:hover:border-gray-500">
-                  <SelectValue placeholder="Pilih gedung" />
+                  {finalBuildingName ? (
+                    <span className="text-sm">{finalBuildingName}</span>
+                  ) : (
+                    <SelectValue placeholder="Pilih gedung" />
+                  )}
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="max-h-[300px] overflow-y-auto">
+                  {/* Input Manual - Always visible at top */}
+                  <div 
+                    className="px-2 py-2 border-b border-gray-200 dark:border-gray-700"
+                    onKeyDown={(e) => {
+                      // Prevent Select component from handling keyboard events
+                      e.stopPropagation();
+                    }}
+                  >
+                    <Label className="text-xs text-muted-foreground mb-1.5 block">
+                      Input Manual
+                    </Label>
+                    <Input
+                      type="text"
+                      placeholder="Ketik nama gedung & tekan Enter..."
+                      value={manualBuildingInput}
+                      onChange={(e) => {
+                        setManualBuildingInput(e.target.value);
+                      }}
+                      onKeyDown={(e) => {
+                        // Stop propagation agar Select tidak handle keyboard
+                        e.stopPropagation();
+                        
+                        if (e.key === "Enter" && manualBuildingInput.trim()) {
+                          e.preventDefault();
+                          
+                          console.log("🔑 Enter pressed - Manual Input:", manualBuildingInput.trim());
+                          
+                          setIsBuildingDropdownOpen(false); // Close dropdown
+                          toast.success(`Gedung "${manualBuildingInput.trim()}" berhasil dipilih`);
+                        }
+                      }}
+                      onClick={(e) => e.stopPropagation()}
+                      onFocus={(e) => e.stopPropagation()}
+                      className="h-8 text-sm"
+                    />
+                  </div>
+
+                  {/* Predefined Building Options */}
                   {buildings.map((b) => (
                     <SelectItem
                       key={b}
@@ -556,7 +615,7 @@ export default function ReportFormNew({
             ?.label ?? ""}
         </h2>
         <div className="text-sm space-y-1">
-          <div>Gedung: {formState.building}</div>
+          <div>Gedung: {finalBuildingName}</div>
           <div>
             Periode:{" "}
             {formState.periodType === "Mingguan"

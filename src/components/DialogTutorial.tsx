@@ -1,4 +1,4 @@
-import { FileText, CheckCircle, Camera, Download } from "lucide-react";
+import { FileText, CheckCircle, Camera, Download, ChevronDown, ChevronUp } from "lucide-react";
 import React from "react";
 import {
   Card,
@@ -7,20 +7,49 @@ import {
   CardDescription,
   CardContent,
 } from "./ui/card";
+import { Button } from "./ui/button";
 
 const DialogTutorial = () => {
+  const [isCollapsed, setIsCollapsed] = React.useState(false);
+
   return (
-    <Card className="border border-gray-200 dark:border-gray-700/50 h-full flex flex-col shadow-sm">
-      <CardHeader className="border-b border-gray-200 dark:border-gray-700/50 bg-linear-to-b from-gray-50/50 to-transparent dark:from-gray-800/30">
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <FileText className="w-5 h-5 text-primary" />
-          Panduan Penggunaan
-        </CardTitle>
-        <CardDescription className="text-sm">
-          Ikuti langkah-langkah berikut untuk menghasilkan laporan
-        </CardDescription>
+    <Card 
+      className={`border border-gray-200 dark:border-gray-700/50 flex flex-col shadow-sm transition-all duration-300 ${
+        isCollapsed ? 'h-auto' : 'h-[600px] lg:h-[650px]'
+      }`}
+    >
+      <CardHeader className={`bg-linear-to-b from-gray-50/50 to-transparent dark:from-gray-800/30 ${
+        isCollapsed ? '' : 'border-b border-gray-200 dark:border-gray-700/50'
+      }`}>
+        <div className="flex items-center justify-between">
+          <div className="flex-1">
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <FileText className="w-5 h-5 text-primary" />
+              Panduan Penggunaan
+            </CardTitle>
+            {!isCollapsed && (
+              <CardDescription className="text-sm mt-1.5">
+                Ikuti langkah-langkah berikut untuk menghasilkan laporan
+              </CardDescription>
+            )}
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="ml-2 h-8 w-8 p-0 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            aria-label={isCollapsed ? "Tampilkan panduan" : "Sembunyikan panduan"}
+          >
+            {isCollapsed ? (
+              <ChevronDown className="h-4 w-4" />
+            ) : (
+              <ChevronUp className="h-4 w-4" />
+            )}
+          </Button>
+        </div>
       </CardHeader>
-      <CardContent className="pt-6 flex-1 overflow-y-auto scrollbar-thin">
+      {!isCollapsed && (
+        <CardContent className="pt-6 flex-1 overflow-y-auto scrollbar-thin">
         <div className="space-y-5 pr-2">
               {/* Step 1 */}
               <div className="space-y-2 group">
@@ -177,9 +206,8 @@ const DialogTutorial = () => {
               </div>
             </div>
           </CardContent>
-        </Card>
-    //   </div>
-    // </Card>
+        )}
+      </Card>
   );
 };
 

@@ -64,9 +64,7 @@ export default function Home() {
 
           {/* Tutorial Section - Takes 1 column on desktop */}
           <div className="lg:col-span-1">
-            <div className="h-[600px] lg:h-[650px]">
-              <DialogTutorial />
-            </div>
+            <DialogTutorial />
           </div>
         </div>
 

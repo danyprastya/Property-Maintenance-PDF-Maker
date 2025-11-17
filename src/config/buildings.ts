@@ -3,4 +3,5 @@ export const buildings = [
   "TCU 2",
   "TCU 3",
   "GD Menara Risti Idex",
+  "Telkom Cisanggarung",
 ] as const;

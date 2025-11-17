@@ -516,7 +516,48 @@ export default function ReportTable({
                   Konfirmasi Export PDF
                 </DialogTitle>
                 <DialogDescription asChild>
-                  <div className="text-xs sm:text-sm leading-relaxed space-y-2">
+                  <div className="text-xs sm:text-sm leading-relaxed space-y-3">
+                    {/* Informasi Laporan */}
+                    <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700/50 rounded-lg p-3 space-y-1.5">
+                      <p className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                        📋 Informasi Laporan
+                      </p>
+                      <div className="space-y-1 text-xs">
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Gedung:</span>
+                          <span className="font-medium text-gray-900 dark:text-gray-100">
+                            {building}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Jenis:</span>
+                          <span className="font-medium text-gray-900 dark:text-gray-100">
+                            {formType}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Periode:</span>
+                          <span className="font-medium text-gray-900 dark:text-gray-100">
+                            {periodType === "Mingguan"
+                              ? `Minggu ${week}`
+                              : periodType === "Bulanan"
+                              ? `Bulan ${month ? new Date(month).toLocaleDateString("id-ID", { month: "long", year: "numeric" }) : "-"}`
+                              : "-"}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Tanggal:</span>
+                          <span className="font-medium text-gray-900 dark:text-gray-100">
+                            {new Date().toLocaleDateString("id-ID", {
+                              day: "numeric",
+                              month: "long",
+                              year: "numeric",
+                            })}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
                     <p>
                       Pastikan semua data sudah terisi dengan benar sebelum
                       melanjutkan.
