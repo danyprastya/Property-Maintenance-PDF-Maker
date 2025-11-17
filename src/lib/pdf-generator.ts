@@ -256,7 +256,7 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
   yPos += 5;
 
   // Jabatan
-  doc.text("MANAR BANDUNG", leftX, yPos, { align: "center" });
+  doc.text("MANAGER AREA BANDUNG", leftX, yPos, { align: "center" });
   doc.text("SENIOR CHIEF ENGINEERING", rightX, yPos, { align: "center" });
 
   return doc;
