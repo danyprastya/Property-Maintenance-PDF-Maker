@@ -243,7 +243,7 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
   );
 
   // Nama dengan underline (kanan)
-  const heriName = "YUDI BUDIMAN";
+  const heriName = "HERRIYANTO";
   const heriWidth = doc.getTextWidth(heriName);
   doc.text(heriName, rightX, yPos, { align: "center" });
   doc.line(
@@ -257,7 +257,7 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
 
   // Jabatan
   doc.text("MANAR BANDUNG", leftX, yPos, { align: "center" });
-  doc.text("TEKNISI", rightX, yPos, { align: "center" });
+  doc.text("SENIOR CHIEF ENGINEERING", rightX, yPos, { align: "center" });
 
   return doc;
 }
