@@ -45,6 +45,7 @@ export default function ReportTable({
   periodType,
   week,
   month,
+  selectedDate,
   entries,
   onEntriesChange,
   onExported,
@@ -54,6 +55,7 @@ export default function ReportTable({
   periodType: "Mingguan" | "Bulanan" | "";
   week: string;
   month: string;
+  selectedDate?: Date;
   entries: FormEntry[];
   onEntriesChange?: (next: FormEntry[]) => void;
   onExported?: () => void;
@@ -254,6 +256,7 @@ export default function ReportTable({
         periodType,
         week,
         month,
+        selectedDate,
         entries,
         idPerangkat,
       });
@@ -536,23 +539,58 @@ export default function ReportTable({
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-muted-foreground">Periode:</span>
+                          <span className="text-muted-foreground">
+                            Periode:
+                          </span>
                           <span className="font-medium text-gray-900 dark:text-gray-100">
                             {periodType === "Mingguan"
                               ? `Minggu ${week}`
                               : periodType === "Bulanan"
-                              ? `Bulan ${month ? new Date(month).toLocaleDateString("id-ID", { month: "long", year: "numeric" }) : "-"}`
+                              ? `Bulan ${
+                                  month
+                                    ? new Date(month).toLocaleDateString(
+                                        "id-ID",
+                                        { month: "long", year: "numeric" }
+                                      )
+                                    : "-"
+                                }`
                               : "-"}
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-muted-foreground">Tanggal:</span>
+                          <span className="text-muted-foreground">
+                            Tanggal:
+                          </span>
                           <span className="font-medium text-gray-900 dark:text-gray-100">
-                            {new Date().toLocaleDateString("id-ID", {
-                              day: "numeric",
-                              month: "long",
-                              year: "numeric",
-                            })}
+                            {periodType === "Mingguan"
+                              ? selectedDate
+                                ? selectedDate.toLocaleDateString("id-ID", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                  })
+                                : new Date().toLocaleDateString("id-ID", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                  })
+                              : periodType === "Bulanan"
+                              ? month
+                                ? new Date(month).toLocaleDateString("id-ID", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                  })
+                                : new Date().toLocaleDateString("id-ID", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                  })
+                              : new Date().toLocaleDateString("id-ID", {
+                                  day: "numeric",
+                                  month: "long",
+                                  year: "numeric",
+                                })}
                           </span>
                         </div>
                       </div>

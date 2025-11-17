@@ -23,6 +23,10 @@ export default function Home() {
     month: string;
     entries: FormEntry[];
   } | null>(null);
+  
+  // State untuk tanggal yang reactive/real-time
+  const [selectedDate, setSelectedDate] = React.useState<Date | undefined>(undefined);
+  
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-7xl">
@@ -57,6 +61,8 @@ export default function Home() {
                 <ReportFormNew
                   renderTableExternally
                   onGenerated={(p) => setGenerated(p)}
+                  selectedDate={selectedDate}
+                  onSelectedDateChange={setSelectedDate}
                 />
               </CardContent>
             </Card>
@@ -77,11 +83,15 @@ export default function Home() {
               periodType={generated.periodType}
               week={generated.week}
               month={generated.month}
+              selectedDate={selectedDate}
               entries={generated.entries}
               onEntriesChange={(next) =>
                 setGenerated({ ...generated, entries: next })
               }
-              onExported={() => setGenerated(null)}
+              onExported={() => {
+                setGenerated(null);
+                setSelectedDate(undefined); // Reset tanggal saat export selesai
+              }}
             />
           ) : (
             <Card className="border-2 border-dashed border-gray-300 dark:border-gray-700 shadow-sm">

@@ -63,9 +63,13 @@ type GeneratePayload = {
 export default function ReportFormNew({
   renderTableExternally = false,
   onGenerated,
+  selectedDate,
+  onSelectedDateChange,
 }: {
   renderTableExternally?: boolean;
   onGenerated?: (payload: GeneratePayload) => void;
+  selectedDate?: Date;
+  onSelectedDateChange?: (date: Date | undefined) => void;
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -81,7 +85,9 @@ export default function ReportFormNew({
   });
 
   // Dua variabel terpisah untuk gedung
-  const [selectedPresetBuilding, setSelectedPresetBuilding] = useState<string>(buildings[0]); // Dari dropdown
+  const [selectedPresetBuilding, setSelectedPresetBuilding] = useState<string>(
+    buildings[0]
+  ); // Dari dropdown
   const [manualBuildingInput, setManualBuildingInput] = useState<string>(""); // Dari input manual
   const [isBuildingDropdownOpen, setIsBuildingDropdownOpen] = useState(false);
 
@@ -120,12 +126,15 @@ export default function ReportFormNew({
         photoDataUrl: "",
       }));
       setFormState((prev) => ({ ...prev, entries }));
-      
+
       // Debug: Log building value sebelum dikirim
       console.log("🏢 Generate Form - Manual Input:", manualBuildingInput);
-      console.log("🏢 Generate Form - Preset Selected:", selectedPresetBuilding);
+      console.log(
+        "🏢 Generate Form - Preset Selected:",
+        selectedPresetBuilding
+      );
       console.log("🏢 Generate Form - Final Building:", finalBuildingName);
-      
+
       onGenerated?.({
         building: finalBuildingName, // Gunakan computed value
         formType: composed,
@@ -253,7 +262,7 @@ export default function ReportFormNew({
                 </SelectTrigger>
                 <SelectContent className="max-h-[300px] overflow-y-auto">
                   {/* Input Manual - Always visible at top */}
-                  <div 
+                  <div
                     className="px-2 py-2 border-b border-gray-200 dark:border-gray-700"
                     onKeyDown={(e) => {
                       // Prevent Select component from handling keyboard events
@@ -273,14 +282,19 @@ export default function ReportFormNew({
                       onKeyDown={(e) => {
                         // Stop propagation agar Select tidak handle keyboard
                         e.stopPropagation();
-                        
+
                         if (e.key === "Enter" && manualBuildingInput.trim()) {
                           e.preventDefault();
-                          
-                          console.log("🔑 Enter pressed - Manual Input:", manualBuildingInput.trim());
-                          
+
+                          console.log(
+                            "🔑 Enter pressed - Manual Input:",
+                            manualBuildingInput.trim()
+                          );
+
                           setIsBuildingDropdownOpen(false); // Close dropdown
-                          toast.success(`Gedung "${manualBuildingInput.trim()}" berhasil dipilih`);
+                          toast.success(
+                            `Gedung "${manualBuildingInput.trim()}" berhasil dipilih`
+                          );
                         }
                       }}
                       onClick={(e) => e.stopPropagation()}
@@ -345,15 +359,17 @@ export default function ReportFormNew({
               </Label>
               <Select
                 value={formState.periodType}
-                onValueChange={(v: "Mingguan" | "Bulanan") =>
+                onValueChange={(v: "Mingguan" | "Bulanan") => {
                   setFormState((prev) => ({
                     ...prev,
                     periodType: v,
                     // Reset week/month when period type changes
                     week: "",
                     month: "",
-                  }))
-                }
+                  }));
+                  // Reset selectedDate saat ganti periode
+                  onSelectedDateChange?.(undefined);
+                }}
               >
                 <SelectTrigger className="h-9 sm:h-10 text-sm transition-all duration-150 hover:border-gray-400 dark:hover:border-gray-500">
                   <SelectValue placeholder="Pilih periode" />
@@ -407,6 +423,43 @@ export default function ReportFormNew({
                     </SelectItem>
                   </SelectContent>
                 </Select>
+              </div>
+            )}
+
+            {formState.periodType === "Mingguan" && (
+              <div className="space-y-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                <Label
+                  htmlFor="selectedDate"
+                  className="text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-100"
+                >
+                  Tanggal (Opsional)
+                </Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className={cn(
+                        "w-full h-9 sm:h-10 justify-start text-left font-normal text-sm transition-all duration-150 hover:border-gray-400 dark:hover:border-gray-500",
+                        !selectedDate && "text-muted-foreground"
+                      )}
+                    >
+                      <CalendarIcon className="mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                      {selectedDate
+                        ? format(selectedDate, "dd MMM yyyy")
+                        : "Gunakan tanggal hari ini"}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={selectedDate}
+                      onSelect={(date) => {
+                        onSelectedDateChange?.(date);
+                      }}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
               </div>
             )}
 
@@ -467,7 +520,7 @@ export default function ReportFormNew({
             <Button
               type="button"
               variant="outline"
-              onClick={() =>
+              onClick={() => {
                 setFormState({
                   building: buildings[0],
                   formType: "",
@@ -475,8 +528,11 @@ export default function ReportFormNew({
                   week: "",
                   month: "",
                   entries: [],
-                })
-              }
+                });
+                setSelectedPresetBuilding(buildings[0]);
+                setManualBuildingInput("");
+                onSelectedDateChange?.(undefined); // Reset tanggal
+              }}
               className="flex-1 sm:flex-initial transition-all duration-150 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               Clear

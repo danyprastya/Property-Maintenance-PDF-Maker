@@ -11,12 +11,13 @@ interface PDFGeneratorOptions {
   periodType: "Mingguan" | "Bulanan" | "";
   week: string;
   month: string;
+  selectedDate?: Date; // Optional custom date untuk periode mingguan
   entries: FormEntry[];
   idPerangkat: string;
 }
 
 export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> {
-  const { building, formType, periodType, week, month, entries, idPerangkat } = options;
+  const { building, formType, periodType, week, month, selectedDate, entries, idPerangkat } = options;
 
   // Create PDF
   const doc = new jsPDF({
@@ -179,7 +180,9 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
   // Tanggal untuk bagian kanan
   const tanggalTTD =
     periodType === "Mingguan"
-      ? format(new Date(), "dd MMMM yyyy")
+      ? selectedDate // Gunakan tanggal custom jika dipilih
+        ? format(selectedDate, "dd MMMM yyyy")
+        : format(new Date(), "dd MMMM yyyy") // Fallback ke hari ini
       : month
       ? format(new Date(month), "dd MMMM yyyy")
       : format(new Date(), "dd MMMM yyyy");
