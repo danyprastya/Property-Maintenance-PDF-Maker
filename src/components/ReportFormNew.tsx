@@ -4,7 +4,7 @@ import * as React from "react";
 import { useState } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
-import { ImageIcon, Loader2, Calendar as CalendarIcon } from "lucide-react";
+import { ImageIcon, Loader2, Calendar as CalendarIcon, AlertTriangle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -40,7 +40,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { cn, compressImage, getFormTemplate } from "@/lib/utils";
+import { cn, compressImage, getFormTemplate, checkTemplateAvailability, TemplateNotAvailableError, formTypeLabels } from "@/lib/utils";
 import { buildings } from "@/config/constants";
 import { formTypes } from "@/config/form-types";
 import { format } from "date-fns";
@@ -58,6 +58,7 @@ type GeneratePayload = {
   week: string;
   month: string;
   entries: FormEntry[];
+  unitNumber?: string; // Untuk Genset 1/2 atau Trafo 1/2 di GD Menara Risti Idex
 };
 
 export default function ReportFormNew({
@@ -94,6 +95,14 @@ export default function ReportFormNew({
   // Computed value: Prioritas manual input, fallback ke preset
   const finalBuildingName = manualBuildingInput || selectedPresetBuilding;
 
+  // State untuk unit number (khusus GD Menara Risti Idex - Genset 1/2 atau Trafo 1/2)
+  const [unitNumber, setUnitNumber] = useState<string>("");
+
+  // Cek apakah perlu menampilkan pilihan unit
+  const showUnitSelection = 
+    finalBuildingName === "GD Menara Risti Idex" && 
+    (formState.formType === "Genset" || formState.formType === "Trafo");
+
   // Load form template when type changes
   async function onGenerateForm(e: React.FormEvent) {
     e.preventDefault();
@@ -105,12 +114,33 @@ export default function ReportFormNew({
       toast.error("Pilih periode laporan terlebih dahulu");
       return;
     }
+    
+    // Validasi unit number untuk GD Menara Risti Idex
+    if (showUnitSelection && !unitNumber) {
+      toast.error(`Pilih nomor ${formState.formType} terlebih dahulu (1 atau 2)`);
+      return;
+    }
 
     setIsLoading(true);
     try {
       // Compose activity + period into a FormType key used to fetch the template
       const activity = formState.formType;
       const period = formState.periodType;
+      
+      // Cek ketersediaan template sebelum fetch
+      if (activity !== "COSATFAMF" && period) {
+        const isAvailable = checkTemplateAvailability(activity, period);
+        if (!isAvailable) {
+          const label = formTypeLabels[activity] || activity;
+          toast.error(
+            `Template ${period} tidak tersedia untuk laporan ${label}. Silakan pilih periode Bulanan.`,
+            { duration: 5000 }
+          );
+          setIsLoading(false);
+          return;
+        }
+      }
+      
       const composed: FormType = (
         activity === "COSATFAMF" || !period ? activity : `${activity}_${period}`
       ) as FormType;
@@ -142,11 +172,16 @@ export default function ReportFormNew({
         week: formState.week,
         month: formState.month,
         entries,
+        unitNumber: showUnitSelection ? unitNumber : undefined, // Kirim unit number jika ada
       });
       toast.success("Form berhasil di-generate");
     } catch (error) {
       console.error(error);
-      toast.error("Gagal memuat template form");
+      if (error instanceof TemplateNotAvailableError) {
+        toast.error(error.message, { duration: 5000 });
+      } else {
+        toast.error("Gagal memuat template form. Pastikan kombinasi laporan dan periode tersedia.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -249,6 +284,7 @@ export default function ReportFormNew({
                 onValueChange={(v) => {
                   setSelectedPresetBuilding(v);
                   setManualBuildingInput(""); // Clear manual when preset selected
+                  setUnitNumber(""); // Reset unit number when building changes
                 }}
                 open={isBuildingDropdownOpen}
                 onOpenChange={setIsBuildingDropdownOpen}
@@ -326,12 +362,14 @@ export default function ReportFormNew({
               </Label>
               <Select
                 value={formState.formType}
-                onValueChange={(v) =>
+                onValueChange={(v) => {
                   setFormState((prev) => ({
                     ...prev,
                     formType: v as FormType,
-                  }))
-                }
+                  }));
+                  // Reset unit number ketika ganti jenis laporan
+                  setUnitNumber("");
+                }}
               >
                 <SelectTrigger className="h-9 sm:h-10 text-sm transition-all duration-150 hover:border-gray-400 dark:hover:border-gray-500">
                   <SelectValue placeholder="Pilih jenis laporan" />
@@ -349,6 +387,34 @@ export default function ReportFormNew({
                 </SelectContent>
               </Select>
             </div>
+
+            {/* Dropdown untuk Unit Number (khusus GD Menara Risti Idex - Genset/Trafo) */}
+            {showUnitSelection && (
+              <div className="space-y-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                <Label
+                  htmlFor="unitNumber"
+                  className="text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-100"
+                >
+                  Nomor {formState.formType}
+                </Label>
+                <Select
+                  value={unitNumber}
+                  onValueChange={setUnitNumber}
+                >
+                  <SelectTrigger className="h-9 sm:h-10 text-sm transition-all duration-150 hover:border-gray-400 dark:hover:border-gray-500">
+                    <SelectValue placeholder={`Pilih ${formState.formType} 1 atau 2`} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1" className="cursor-pointer text-sm">
+                      {formState.formType} 1
+                    </SelectItem>
+                    <SelectItem value="2" className="cursor-pointer text-sm">
+                      {formState.formType} 2
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
 
             <div className="space-y-2">
               <Label
@@ -389,6 +455,18 @@ export default function ReportFormNew({
                   </SelectItem>
                 </SelectContent>
               </Select>
+              
+              {/* Warning jika kombinasi tidak tersedia */}
+              {formState.formType && formState.periodType && 
+                !checkTemplateAvailability(formState.formType, formState.periodType) && (
+                <div className="flex items-start gap-2 p-2 mt-2 rounded-md bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700">
+                  <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                  <p className="text-xs text-amber-700 dark:text-amber-300">
+                    Template {formState.periodType} tidak tersedia untuk {formTypeLabels[formState.formType] || formState.formType}. 
+                    Silakan pilih periode <strong>Bulanan</strong>.
+                  </p>
+                </div>
+              )}
             </div>
 
             {formState.periodType === "Mingguan" && (
@@ -531,6 +609,7 @@ export default function ReportFormNew({
                 });
                 setSelectedPresetBuilding(buildings[0]);
                 setManualBuildingInput("");
+                setUnitNumber(""); // Reset unit number
                 onSelectedDateChange?.(undefined); // Reset tanggal
               }}
               className="flex-1 sm:flex-initial transition-all duration-150 hover:bg-gray-100 dark:hover:bg-gray-800"

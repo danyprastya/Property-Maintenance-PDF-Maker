@@ -14,10 +14,11 @@ interface PDFGeneratorOptions {
   selectedDate?: Date; // Optional custom date untuk periode mingguan
   entries: FormEntry[];
   idPerangkat: string;
+  unitNumber?: string; // Untuk Genset 1/2 atau Trafo 1/2 di GD Menara Risti Idex
 }
 
 export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> {
-  const { building, formType, periodType, week, month, selectedDate, entries, idPerangkat } = options;
+  const { building, formType, periodType, week, month, selectedDate, entries, idPerangkat, unitNumber } = options;
 
   // Create PDF
   const doc = new jsPDF({
@@ -49,9 +50,31 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
   // 2. Judul - Jenis Laporan + Periode (ALIGN KIRI, di bawah logo)
   doc.setFont("helvetica", "bold");
   doc.setFontSize(12); // Dikecilkan dari 14 ke 12
-  const formTypeName = formTypes.find((f) => f.value === formType)?.label || formType;
-  const periodeName = periodType === "Mingguan" ? "MINGGUAN" : "BULANAN";
-  const fullTitle = `PEMELIHARAAN ${formTypeName.toUpperCase()} ${periodeName}`;
+  
+  // Parse formType untuk menghilangkan duplikasi periode
+  // Contoh: "Genset_Mingguan" atau "Penyalur_Petir_Bulanan"
+  let cleanFormTypeName = formType;
+  
+  // Hilangkan suffix _Mingguan atau _Bulanan dari formType
+  if (formType.endsWith("_Mingguan") || formType.endsWith("_Bulanan")) {
+    cleanFormTypeName = formType.replace(/_Mingguan|_Bulanan/g, "");
+  }
+  
+  // Ganti underscore dengan spasi untuk readability
+  cleanFormTypeName = cleanFormTypeName.replace(/_/g, " ");
+  
+  // Cari label yang sesuai dari config, atau gunakan yang sudah dibersihkan
+  const formTypeLabel = formTypes.find((f) => f.value === formType)?.label || cleanFormTypeName;
+  
+  // Tambahkan unit number jika ada (untuk GD Menara Risti Idex - Genset 1/2 atau Trafo 1/2)
+  const unitSuffix = unitNumber ? ` ${unitNumber}` : "";
+  
+  // Tambahkan periode hanya jika ada periodType
+  const periodeName = periodType === "Mingguan" ? "MINGGUAN" : periodType === "Bulanan" ? "BULANAN" : "";
+  const fullTitle = periodeName 
+    ? `PEMELIHARAAN ${formTypeLabel.toUpperCase()}${unitSuffix} ${periodeName}`
+    : `PEMELIHARAAN ${formTypeLabel.toUpperCase()}${unitSuffix}`;
+    
   doc.text(fullTitle, 15, yPos); // Align kiri, x=15 sama dengan logo
   yPos += 10;
 

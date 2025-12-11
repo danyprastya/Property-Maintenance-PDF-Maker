@@ -22,6 +22,7 @@ export default function Home() {
     week: string;
     month: string;
     entries: FormEntry[];
+    unitNumber?: string; // Untuk Genset 1/2 atau Trafo 1/2 di GD Menara Risti Idex
   } | null>(null);
 
   // State untuk tanggal yang reactive/real-time
@@ -87,6 +88,7 @@ export default function Home() {
               month={generated.month}
               selectedDate={selectedDate}
               entries={generated.entries}
+              unitNumber={generated.unitNumber}
               onEntriesChange={(next) =>
                 setGenerated({ ...generated, entries: next })
               }

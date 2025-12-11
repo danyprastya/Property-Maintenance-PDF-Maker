@@ -47,6 +47,7 @@ export default function ReportTable({
   month,
   selectedDate,
   entries,
+  unitNumber,
   onEntriesChange,
   onExported,
 }: {
@@ -57,6 +58,7 @@ export default function ReportTable({
   month: string;
   selectedDate?: Date;
   entries: FormEntry[];
+  unitNumber?: string; // Untuk Genset 1/2 atau Trafo 1/2 di GD Menara Risti Idex
   onEntriesChange?: (next: FormEntry[]) => void;
   onExported?: () => void;
 }) {
@@ -265,6 +267,7 @@ export default function ReportTable({
         selectedDate,
         entries,
         idPerangkat,
+        unitNumber,
       });
 
       // Save PDF
