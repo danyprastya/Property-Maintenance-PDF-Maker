@@ -53,7 +53,7 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
   
   // Parse formType untuk menghilangkan duplikasi periode
   // Contoh: "Genset_Mingguan" atau "Penyalur_Petir_Bulanan"
-  let cleanFormTypeName = formType;
+  let cleanFormTypeName: string = formType;
   
   // Hilangkan suffix _Mingguan atau _Bulanan dari formType
   if (formType.endsWith("_Mingguan") || formType.endsWith("_Bulanan")) {
