@@ -191,6 +191,12 @@ export default function ReportTable({
     setDetailDialog({ open: true, title, content });
   }
 
+  // Helper function to check if entry is a note/catatan (no photo required)
+  function isNoteEntry(entry: FormEntry): boolean {
+    const itemName = entry["Item Checklist"].toLowerCase();
+    return itemName.includes("catatan kesimpulan") || itemName.includes("catatan rekomendasi");
+  }
+
   async function onChangePhoto(index: number, file?: File) {
     if (!file) return;
     try {
@@ -218,8 +224,8 @@ export default function ReportTable({
   }
 
   async function onExportPdf() {
-    // Validate all photos are uploaded
-    const missingPhotoIdx = entries.findIndex((entry) => !entry.photoDataUrl);
+    // Validate all photos are uploaded (except for note entries)
+    const missingPhotoIdx = entries.findIndex((entry) => !entry.photoDataUrl && !isNoteEntry(entry));
     if (missingPhotoIdx !== -1) {
       setMissingPhotoIndex(missingPhotoIdx);
       setShowConfirm(false);
@@ -422,72 +428,79 @@ export default function ReportTable({
                       </Button>
                     </TableCell>
                     <TableCell className="p-2 sm:p-4">
-                      <div className="flex flex-col gap-2 items-center">
-                        {/* Upload & Camera Buttons */}
-                        <div className="flex gap-1 sm:gap-2 w-full">
-                          {/* Upload Button */}
-                          <Label
-                            htmlFor={`photo-upload-${idx}`}
-                            className="cursor-pointer inline-flex items-center justify-center gap-1 text-xs font-medium rounded-lg border border-gray-300 dark:border-gray-600 px-2 py-1.5 sm:py-2 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-150 active:scale-95 flex-1"
-                          >
-                            <ImageIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                            <span className="hidden sm:inline">Upload</span>
-                            <Input
-                              id={`photo-upload-${idx}`}
-                              type="file"
-                              accept="image/*"
-                              className="hidden"
-                              onChange={(e) =>
-                                onChangePhoto(idx, e.target.files?.[0])
-                              }
-                            />
-                          </Label>
-
-                          {/* Camera Button - Opens native camera app on mobile */}
-                          <Label
-                            htmlFor={`camera-${idx}`}
-                            className="cursor-pointer inline-flex items-center justify-center gap-1 text-xs font-medium rounded-lg border border-blue-300 dark:border-blue-600 bg-blue-50 dark:bg-blue-900/30 px-2 py-1.5 sm:py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-150 active:scale-95 flex-1"
-                          >
-                            <input
-                              id={`camera-${idx}`}
-                              type="file"
-                              accept="image/*"
-                              capture="environment"
-                              className="hidden"
-                              onChange={async (e) => {
-                                const file = e.target.files?.[0];
-                                if (file) {
-                                  await onChangePhoto(idx, file);
-                                  // Reset input so the same file can be selected again
-                                  e.target.value = "";
-                                }
-                              }}
-                            />
-                            <Camera className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                            <span className="hidden sm:inline">Kamera</span>
-                          </Label>
+                      {isNoteEntry(entry) ? (
+                        // No photo required for note entries
+                        <div className="flex items-center justify-center text-xs text-muted-foreground italic">
+                          <span>-</span>
                         </div>
+                      ) : (
+                        <div className="flex flex-col gap-2 items-center">
+                          {/* Upload & Camera Buttons */}
+                          <div className="flex gap-1 sm:gap-2 w-full">
+                            {/* Upload Button */}
+                            <Label
+                              htmlFor={`photo-upload-${idx}`}
+                              className="cursor-pointer inline-flex items-center justify-center gap-1 text-xs font-medium rounded-lg border border-gray-300 dark:border-gray-600 px-2 py-1.5 sm:py-2 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-150 active:scale-95 flex-1"
+                            >
+                              <ImageIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                              <span className="hidden sm:inline">Upload</span>
+                              <Input
+                                id={`photo-upload-${idx}`}
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                onChange={(e) =>
+                                  onChangePhoto(idx, e.target.files?.[0])
+                                }
+                              />
+                            </Label>
 
-                        {/* Photo Preview */}
-                        {entry.photoDataUrl && (
-                          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-md overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
-                            <Image
-                              src={entry.photoDataUrl}
-                              alt={`Photo ${idx + 1}`}
-                              fill
-                              className="object-cover"
-                            />
+                            {/* Camera Button - Opens native camera app on mobile */}
+                            <Label
+                              htmlFor={`camera-${idx}`}
+                              className="cursor-pointer inline-flex items-center justify-center gap-1 text-xs font-medium rounded-lg border border-blue-300 dark:border-blue-600 bg-blue-50 dark:bg-blue-900/30 px-2 py-1.5 sm:py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-150 active:scale-95 flex-1"
+                            >
+                              <input
+                                id={`camera-${idx}`}
+                                type="file"
+                                accept="image/*"
+                                capture="environment"
+                                className="hidden"
+                                onChange={async (e) => {
+                                  const file = e.target.files?.[0];
+                                  if (file) {
+                                    await onChangePhoto(idx, file);
+                                    // Reset input so the same file can be selected again
+                                    e.target.value = "";
+                                  }
+                                }}
+                              />
+                              <Camera className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                              <span className="hidden sm:inline">Kamera</span>
+                            </Label>
                           </div>
-                        )}
 
-                        {/* Missing Photo Warning */}
-                        {!entry.photoDataUrl && missingPhotoIndex === idx && (
-                          <div className="flex items-center gap-1 text-xs text-red-600 dark:text-red-400 mt-1">
-                            <AlertCircle className="h-3 w-3" />
-                            <span>Foto wajib!</span>
-                          </div>
-                        )}
-                      </div>
+                          {/* Photo Preview */}
+                          {entry.photoDataUrl && (
+                            <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-md overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
+                              <Image
+                                src={entry.photoDataUrl}
+                                alt={`Photo ${idx + 1}`}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                          )}
+
+                          {/* Missing Photo Warning */}
+                          {!entry.photoDataUrl && missingPhotoIndex === idx && (
+                            <div className="flex items-center gap-1 text-xs text-red-600 dark:text-red-400 mt-1">
+                              <AlertCircle className="h-3 w-3" />
+                              <span>Foto wajib!</span>
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -601,16 +614,16 @@ export default function ReportTable({
                       melanjutkan.
                     </p>
                     <p className="font-semibold text-amber-600 dark:text-amber-400">
-                      ⚠️ Semua foto wajib diupload!
+                      ⚠️ Semua foto wajib diupload !
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {entries.filter((e) => !e.photoDataUrl).length === 0 ? (
+                      {entries.filter((e) => !e.photoDataUrl && !isNoteEntry(e)).length === 0 ? (
                         <span className="text-green-600 dark:text-green-400">
                           ✓ Semua foto sudah diupload
                         </span>
                       ) : (
                         <span className="text-red-600 dark:text-red-400">
-                          ✗ Ada {entries.filter((e) => !e.photoDataUrl).length}{" "}
+                          ✗ Ada {entries.filter((e) => !e.photoDataUrl && !isNoteEntry(e)).length}{" "}
                           foto yang belum diupload
                         </span>
                       )}
