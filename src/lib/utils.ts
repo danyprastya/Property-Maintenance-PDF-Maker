@@ -14,6 +14,8 @@ export const templateAvailability: Record<string, { Mingguan: boolean; Bulanan: 
   "Penyalur_Petir": { Mingguan: false, Bulanan: true },
   "Trafo": { Mingguan: false, Bulanan: true },
   "COSATFAMF": { Mingguan: true, Bulanan: true }, // Tidak pakai periode, set true agar tidak ada warning
+  "Capacitor_Bank": { Mingguan: false, Bulanan: true }, // Hanya ada template bulanan
+  "CubicleSwitch_Gear": { Mingguan: false, Bulanan: true }, // Hanya ada template bulanan
 };
 
 // Label yang lebih ramah untuk nama laporan
@@ -23,6 +25,8 @@ export const formTypeLabels: Record<string, string> = {
   "Penyalur_Petir": "Penyalur Petir",
   "Trafo": "Pemeriksaan Trafo",
   "COSATFAMF": "COS/ATS/AMF",
+  "Capacitor_Bank": "Capacitor Bank",
+  "CubicleSwitch_Gear": "Cubicle/Switch Gear",
 };
 
 // Custom error class untuk template tidak tersedia
