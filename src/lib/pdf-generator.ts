@@ -15,10 +15,31 @@ interface PDFGeneratorOptions {
   entries: FormEntry[];
   idPerangkat: string;
   unitNumber?: string; // Untuk Genset 1/2 atau Trafo 1/2 di GD Menara Risti Idex
+  // Data baru dari building-data
+  kodeGedung?: string;
+  lokasiGedung?: string;
+  signatureDate?: Date;
+  manarName?: string;
+  picName?: string;
 }
 
 export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> {
-  const { building, formType, periodType, week, month, selectedDate, entries, idPerangkat, unitNumber } = options;
+  const { 
+    building, 
+    formType, 
+    periodType, 
+    week, 
+    month, 
+    selectedDate, 
+    entries, 
+    idPerangkat, 
+    unitNumber,
+    kodeGedung: kodeGedungProp,
+    lokasiGedung: lokasiGedungProp,
+    signatureDate,
+    manarName,
+    picName
+  } = options;
 
   // Create PDF
   const doc = new jsPDF({
@@ -84,31 +105,33 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
 
   // Minggu/Tanggal
   if (periodType === "Mingguan") {
+    // Tampilkan MINGGU KE
     doc.text(`MINGGU KE`, 15, yPos);
     doc.text(`: MINGGU ${week}`, 80, yPos);
+    yPos += 5;
+    
+    // Tampilkan TANGGAL (gunakan selectedDate jika ada, fallback ke hari ini)
+    const reportDate = selectedDate || new Date();
+    doc.text(`TANGGAL`, 15, yPos);
+    doc.text(`: ${format(reportDate, "dd MMMM yyyy").toUpperCase()}`, 80, yPos);
   } else {
+    // Untuk Bulanan, tampilkan TANGGAL saja
     const monthDate = month ? new Date(month) : new Date();
     doc.text(`TANGGAL`, 15, yPos);
     doc.text(`: ${format(monthDate, "dd MMMM yyyy").toUpperCase()}`, 80, yPos);
   }
   yPos += 5;
 
-  // Kode Gedung (SIMA)
-  const kodeGedungMap: Record<string, string> = {
-    "TCU 1": "1611",
-    "TCU 2": "1618",
-    "TCU 3": "1608",
-    "GD Menara Risti Idex": "1547",
-    "Telkom Cisanggarung": "", // Bisa diisi jika ada kode SIMA
-  };
-  const kodeGedung = kodeGedungMap[building] || "-"; // Default ke "-" jika tidak ada mapping
+  // Kode Gedung (SIMA) - Gunakan dari props jika ada, fallback ke mapping lama
+  const kodeGedung = kodeGedungProp || "-";
   doc.text(`KODE GEDUNG (SIMA)`, 15, yPos);
   doc.text(`: ${kodeGedung}`, 80, yPos);
   yPos += 5;
 
-  // Lokasi Gedung
+  // Lokasi Gedung - Gunakan dari props jika ada, fallback ke building name
+  const lokasiGedung = lokasiGedungProp || building;
   doc.text(`LOKASI GEDUNG`, 15, yPos);
-  doc.text(`: ${building}`, 80, yPos);
+  doc.text(`: ${lokasiGedung}`, 80, yPos);
   yPos += 5;
 
   // ID Perangkat (SIMA)
@@ -200,15 +223,20 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
     yPos = 20;
   }
 
-  // Tanggal untuk bagian kanan
-  const tanggalTTD =
-    periodType === "Mingguan"
-      ? selectedDate // Gunakan tanggal custom jika dipilih
+  // Tanggal untuk bagian kanan - Gunakan signatureDate jika ada
+  const tanggalTTD = signatureDate 
+    ? format(signatureDate, "dd MMMM yyyy")
+    : periodType === "Mingguan"
+      ? selectedDate
         ? format(selectedDate, "dd MMMM yyyy")
-        : format(new Date(), "dd MMMM yyyy") // Fallback ke hari ini
+        : format(new Date(), "dd MMMM yyyy")
       : month
       ? format(new Date(month), "dd MMMM yyyy")
       : format(new Date(), "dd MMMM yyyy");
+
+  // Nama untuk tanda tangan - gunakan dari props jika ada
+  const leftSignatureName = manarName || "AMIRUDDIN";
+  const rightSignatureName = picName || "HERRIYANTO";
 
   // Kolom Kiri - Mengetahui/menyetujui (BOLD)
   const leftX = 30;
@@ -225,54 +253,132 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
   doc.text("Petugas Pelaksana", rightX, yPos, { align: "center" });
   yPos += 5;
 
-  // TTD Images
+  // TTD Images - coba load berdasarkan nama, fallback ke default
   try {
-    // TTD PA AMIR (kiri)
-    const ttdAmirResponse = await fetch("/TTD PA AMIR.jpg");
-    const ttdAmirBlob = await ttdAmirResponse.blob();
-    const ttdAmirUrl = await new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.readAsDataURL(ttdAmirBlob);
-    });
-    doc.addImage(ttdAmirUrl, "JPEG", leftX - 15, yPos, 30, 20);
+    // Mapping untuk file signature yang spesifik
+    // Normalize semua nama ke uppercase dan trim whitespace untuk matching
+    const signatureFileMap: Record<string, string> = {
+      "AMIRUDDIN": "/TTD PA AMIR.jpg",
+      "HERRIYANTO": "/HERIYANTO.jpg",
+      "GUNAWAN": "/GUNAWAN.png",
+      "AANG CEPI": "/AANG_CEPI.png",
+      "SIGIT RULLY": "/SIGIT_RULLY.png",
+      "RANDI ROMDONI": "/RANDI_ROMDONI.png",
+      "ASEP SOLEH": "/ASEP_SOLEH.png",
+    };
 
-    // TTD HERIYANTO (kanan)
-    const ttdHeriyantoResponse = await fetch("/HERIYANTO.jpg");
-    const ttdHeriyantoBlob = await ttdHeriyantoResponse.blob();
-    const ttdHeriyantoUrl = await new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.readAsDataURL(ttdHeriyantoBlob);
-    });
-    doc.addImage(ttdHeriyantoUrl, "JPEG", rightX - 15, yPos, 30, 20);
+    // Normalize nama untuk matching (uppercase + trim)
+    const normalizedLeftName = leftSignatureName.trim().toUpperCase();
+    const normalizedRightName = rightSignatureName.trim().toUpperCase();
+
+    // TTD Manar (kiri)
+    const ttdManarFilename = signatureFileMap[normalizedLeftName];
+    
+    if (ttdManarFilename) {
+      const ttdManarExt = ttdManarFilename.endsWith('.png') ? 'PNG' : 'JPEG';
+      try {
+        const ttdManarResponse = await fetch(ttdManarFilename);
+        if (ttdManarResponse.ok) {
+          const ttdManarBlob = await ttdManarResponse.blob();
+          const ttdManarUrl = await new Promise<string>((resolve) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result as string);
+            reader.readAsDataURL(ttdManarBlob);
+          });
+          doc.addImage(ttdManarUrl, ttdManarExt, leftX - 15, yPos, 30, 20);
+        } else {
+          throw new Error('File not found');
+        }
+      } catch {
+        // Fallback ke default jika file tidak ditemukan
+        const ttdAmirResponse = await fetch("/TTD PA AMIR.jpg");
+        const ttdAmirBlob = await ttdAmirResponse.blob();
+        const ttdAmirUrl = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.readAsDataURL(ttdAmirBlob);
+        });
+        doc.addImage(ttdAmirUrl, "JPEG", leftX - 15, yPos, 30, 20);
+      }
+    } else {
+      // Jika tidak ada di mapping, langsung gunakan default
+      console.warn(`Signature file not found in mapping for: ${leftSignatureName}, using default`);
+      const ttdAmirResponse = await fetch("/TTD PA AMIR.jpg");
+      const ttdAmirBlob = await ttdAmirResponse.blob();
+      const ttdAmirUrl = await new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.readAsDataURL(ttdAmirBlob);
+      });
+      doc.addImage(ttdAmirUrl, "JPEG", leftX - 15, yPos, 30, 20);
+    }
+
+    // TTD PIC (kanan)
+    const ttdPicFilename = signatureFileMap[normalizedRightName];
+    
+    if (ttdPicFilename) {
+      const ttdPicExt = ttdPicFilename.endsWith('.png') ? 'PNG' : 'JPEG';
+      try {
+        const ttdPicResponse = await fetch(ttdPicFilename);
+        if (ttdPicResponse.ok) {
+          const ttdPicBlob = await ttdPicResponse.blob();
+          const ttdPicUrl = await new Promise<string>((resolve) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result as string);
+            reader.readAsDataURL(ttdPicBlob);
+          });
+          doc.addImage(ttdPicUrl, ttdPicExt, rightX - 15, yPos, 30, 20);
+        } else {
+          throw new Error('File not found');
+        }
+      } catch {
+        // Fallback ke default jika file tidak ditemukan
+        const ttdHeriyantoResponse = await fetch("/HERIYANTO.jpg");
+        const ttdHeriyantoBlob = await ttdHeriyantoResponse.blob();
+        const ttdHeriyantoUrl = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.readAsDataURL(ttdHeriyantoBlob);
+        });
+        doc.addImage(ttdHeriyantoUrl, "JPEG", rightX - 15, yPos, 30, 20);
+      }
+    } else {
+      // Jika tidak ada di mapping, langsung gunakan default
+      console.warn(`Signature file not found in mapping for: ${rightSignatureName}, using default`);
+      const ttdHeriyantoResponse = await fetch("/HERIYANTO.jpg");
+      const ttdHeriyantoBlob = await ttdHeriyantoResponse.blob();
+      const ttdHeriyantoUrl = await new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.readAsDataURL(ttdHeriyantoBlob);
+      });
+      doc.addImage(ttdHeriyantoUrl, "JPEG", rightX - 15, yPos, 30, 20);
+    }
   } catch (err) {
     console.error("Failed to load signatures:", err);
   }
 
   yPos += 25;
 
-  // Nama dengan underline (kiri)
+  // Nama dengan underline (kiri) - gunakan nama dari props
   doc.setFont("helvetica", "normal");
   doc.setFontSize(10);
-  const amirName = "AMIRUDDIN";
-  const amirWidth = doc.getTextWidth(amirName);
-  doc.text(amirName, leftX, yPos, { align: "center" });
+  const leftNameWidth = doc.getTextWidth(leftSignatureName);
+  doc.text(leftSignatureName, leftX, yPos, { align: "center" });
   doc.line(
-    leftX - amirWidth / 2,
+    leftX - leftNameWidth / 2,
     yPos + 0.5,
-    leftX + amirWidth / 2,
+    leftX + leftNameWidth / 2,
     yPos + 0.5
   );
 
-  // Nama dengan underline (kanan)
-  const heriName = "HERRIYANTO";
-  const heriWidth = doc.getTextWidth(heriName);
-  doc.text(heriName, rightX, yPos, { align: "center" });
+  // Nama dengan underline (kanan) - gunakan nama dari props
+  const rightNameWidth = doc.getTextWidth(rightSignatureName);
+  doc.text(rightSignatureName, rightX, yPos, { align: "center" });
   doc.line(
-    rightX - heriWidth / 2,
+    rightX - rightNameWidth / 2,
     yPos + 0.5,
-    rightX + heriWidth / 2,
+    rightX + rightNameWidth / 2,
     yPos + 0.5
   );
 
@@ -280,7 +386,7 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
 
   // Jabatan
   doc.text("MANAGER AREA BANDUNG", leftX, yPos, { align: "center" });
-  doc.text("SENIOR CHIEF ENGINEERING", rightX, yPos, { align: "center" });
+  doc.text(" PIC", rightX, yPos, { align: "center" });
 
   return doc;
 }

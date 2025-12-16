@@ -43,6 +43,7 @@ import {
 import { cn, compressImage, getFormTemplate, checkTemplateAvailability, TemplateNotAvailableError, formTypeLabels } from "@/lib/utils";
 import { buildings } from "@/config/constants";
 import { formTypes } from "@/config/form-types";
+import { getAvailableUnits, getBuildingEquipmentData } from "@/config/building-data";
 import { format } from "date-fns";
 import type {
   FormEntry,
@@ -95,13 +96,28 @@ export default function ReportFormNew({
   // Computed value: Prioritas manual input, fallback ke preset
   const finalBuildingName = manualBuildingInput || selectedPresetBuilding;
 
-  // State untuk unit number (khusus GD Menara Risti Idex - Genset 1/2 atau Trafo 1/2)
+  // State untuk unit number (khusus gedung dengan multiple units seperti Genset 1/2, Trafo 1/2, DEUTZ/MTU, etc.)
   const [unitNumber, setUnitNumber] = useState<string>("");
 
-  // Cek apakah perlu menampilkan pilihan unit
-  const showUnitSelection = 
-    finalBuildingName === "GD Menara Risti Idex" && 
-    (formState.formType === "Genset" || formState.formType === "Trafo");
+  // Dapatkan daftar unit yang tersedia dari building-data berdasarkan gedung, jenis laporan, dan periode
+  const availableUnits = React.useMemo(() => {
+    if (!finalBuildingName || !formState.formType || !formState.periodType) return [];
+    return getAvailableUnits(finalBuildingName, formState.formType, formState.periodType as "Mingguan" | "Bulanan");
+  }, [finalBuildingName, formState.formType, formState.periodType]);
+
+  // Cek apakah perlu menampilkan pilihan unit - sekarang dinamis berdasarkan data building
+  const showUnitSelection = availableUnits.length > 0;
+
+  // Dapatkan data equipment (kode gedung, lokasi, ID perangkat, dll) dari building-data
+  const equipmentData = React.useMemo(() => {
+    if (!finalBuildingName || !formState.formType || !formState.periodType) return null;
+    return getBuildingEquipmentData(
+      finalBuildingName, 
+      formState.formType, 
+      formState.periodType as "Mingguan" | "Bulanan",
+      unitNumber || undefined
+    );
+  }, [finalBuildingName, formState.formType, formState.periodType, unitNumber]);
 
   // Load form template when type changes
   async function onGenerateForm(e: React.FormEvent) {
@@ -115,9 +131,10 @@ export default function ReportFormNew({
       return;
     }
     
-    // Validasi unit number untuk GD Menara Risti Idex
+    // Validasi unit number untuk gedung dengan multiple units
     if (showUnitSelection && !unitNumber) {
-      toast.error(`Pilih nomor ${formState.formType} terlebih dahulu (1 atau 2)`);
+      const unitLabel = availableUnits.length > 0 ? availableUnits.join(" atau ") : "unit";
+      toast.error(`Pilih ${formState.formType}: ${unitLabel}`);
       return;
     }
 
@@ -388,29 +405,28 @@ export default function ReportFormNew({
               </Select>
             </div>
 
-            {/* Dropdown untuk Unit Number (khusus GD Menara Risti Idex - Genset/Trafo) */}
+            {/* Dropdown untuk Unit Number - dinamis berdasarkan building-data */}
             {showUnitSelection && (
               <div className="space-y-2 animate-in fade-in slide-in-from-top-2 duration-300">
                 <Label
                   htmlFor="unitNumber"
                   className="text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-100"
                 >
-                  Nomor {formState.formType}
+                  {formState.formType} Unit
                 </Label>
                 <Select
                   value={unitNumber}
                   onValueChange={setUnitNumber}
                 >
                   <SelectTrigger className="h-9 sm:h-10 text-sm transition-all duration-150 hover:border-gray-400 dark:hover:border-gray-500">
-                    <SelectValue placeholder={`Pilih ${formState.formType} 1 atau 2`} />
+                    <SelectValue placeholder={`Pilih ${formState.formType}`} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="1" className="cursor-pointer text-sm">
-                      {formState.formType} 1
-                    </SelectItem>
-                    <SelectItem value="2" className="cursor-pointer text-sm">
-                      {formState.formType} 2
-                    </SelectItem>
+                    {availableUnits.map((unit) => (
+                      <SelectItem key={unit} value={unit} className="cursor-pointer text-sm">
+                        {formState.formType} {unit}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>

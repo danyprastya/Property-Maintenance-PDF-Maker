@@ -17,6 +17,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
   Table,
   TableBody,
   TableCell,
@@ -32,12 +45,14 @@ import {
   Sparkles,
   Camera,
   AlertCircle,
+  CalendarIcon,
 } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
 import type { FormEntry, FormType, FormTemplate } from "@/types/form";
-import { compressImage, getFormTemplate } from "@/lib/utils";
+import { compressImage, getFormTemplate, cn } from "@/lib/utils";
 import { generatePDF } from "@/lib/pdf-generator";
+import { getBuildingEquipmentData, buildingDataMap } from "@/config/building-data";
 
 export default function ReportTable({
   building,
@@ -71,6 +86,81 @@ export default function ReportTable({
   const [templateData, setTemplateData] = React.useState<FormTemplate | null>(
     null
   );
+  
+  // State untuk data gedung dari building-data
+  const [kodeGedung, setKodeGedung] = React.useState("");
+  const [lokasiGedung, setLokasiGedung] = React.useState("");
+  
+  // State untuk tanda tangan
+  const [selectedManar, setSelectedManar] = React.useState("");
+  const [selectedPic, setSelectedPic] = React.useState("");
+  
+  // State untuk tanggal tanda tangan (terpisah dari tanggal laporan)
+  const [signatureDate, setSignatureDate] = React.useState<Date | undefined>(undefined);
+  
+  // Daftar nama untuk dropdown tanda tangan
+  const allSignatureNames = React.useMemo(() => {
+    const names = new Set<string>();
+    Object.values(buildingDataMap).forEach((data) => {
+      if (data.manar) names.add(data.manar);
+      if (data.pic) names.add(data.pic);
+      // Juga ambil dari equipment jika ada
+      Object.values(data.equipment).forEach((equipment) => {
+        if (equipment) {
+          Object.values(equipment).forEach((period) => {
+            if (period && typeof period === "object") {
+              // Check if this is a BuildingEquipmentData (has kodeGedung)
+              if ("kodeGedung" in period) {
+                const equipData = period as { pic?: string; manar?: string };
+                if (equipData.pic) names.add(equipData.pic);
+                if (equipData.manar) names.add(equipData.manar);
+              } else {
+                // Handle multi-unit - this is a Record<string, BuildingEquipmentData>
+                Object.values(period).forEach((unit) => {
+                  if (unit && typeof unit === "object" && "pic" in unit) {
+                    const unitData = unit as { pic?: string; manar?: string };
+                    if (unitData.pic) names.add(unitData.pic);
+                    if (unitData.manar) names.add(unitData.manar);
+                  }
+                });
+              }
+            }
+          });
+        }
+      });
+    });
+    return Array.from(names).sort();
+  }, []);
+  
+  // Effect untuk auto-fill data gedung saat building/formType/periodType/unitNumber berubah
+  React.useEffect(() => {
+    // Extract base form type (e.g., "Genset_Mingguan" -> "Genset")
+    const baseFormType = formType.replace(/_Mingguan|_Bulanan/g, "");
+    const period = periodType as "Mingguan" | "Bulanan";
+    
+    if (building && baseFormType && period) {
+      const equipmentData = getBuildingEquipmentData(building, baseFormType, period, unitNumber);
+      
+      if (equipmentData) {
+        setKodeGedung(equipmentData.kodeGedung);
+        setLokasiGedung(equipmentData.lokasiGedung);
+        setIdPerangkat(equipmentData.idPerangkat);
+        setSelectedManar(equipmentData.manar);
+        setSelectedPic(equipmentData.pic);
+      } else {
+        // Fallback ke data gedung level atas
+        const buildingData = buildingDataMap[building];
+        if (buildingData) {
+          setKodeGedung(buildingData.kodeGedung);
+          setLokasiGedung(buildingData.lokasiGedung);
+          setSelectedManar(buildingData.manar);
+          setSelectedPic(buildingData.pic);
+          setIdPerangkat("");
+        }
+      }
+    }
+  }, [building, formType, periodType, unitNumber]);
+
   const [editDialog, setEditDialog] = React.useState<{
     open: boolean;
     index: number;
@@ -268,6 +358,12 @@ export default function ReportTable({
         entries,
         idPerangkat,
         unitNumber,
+        // Data baru dari building-data
+        kodeGedung,
+        lokasiGedung,
+        signatureDate: signatureDate || new Date(),
+        manarName: selectedManar,
+        picName: selectedPic,
       });
 
       // Save PDF
@@ -529,7 +625,7 @@ export default function ReportTable({
                 Export PDF
               </Button>
             </DialogTrigger>
-            <DialogContent className="w-[calc(100%-2rem)] sm:max-w-md">
+            <DialogContent className="w-[calc(100%-2rem)] sm:max-w-lg max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle className="text-lg sm:text-xl">
                   Konfirmasi Export PDF
@@ -549,11 +645,25 @@ export default function ReportTable({
                           </span>
                         </div>
                         <div className="flex justify-between">
+                          <span className="text-muted-foreground">Kode Gedung:</span>
+                          <span className="font-medium text-gray-900 dark:text-gray-100">
+                            {kodeGedung || "-"}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
                           <span className="text-muted-foreground">Jenis:</span>
                           <span className="font-medium text-gray-900 dark:text-gray-100">
                             {formType}
                           </span>
                         </div>
+                        {unitNumber && (
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Unit:</span>
+                            <span className="font-medium text-gray-900 dark:text-gray-100">
+                              {unitNumber}
+                            </span>
+                          </div>
+                        )}
                         <div className="flex justify-between">
                           <span className="text-muted-foreground">
                             Periode:
@@ -575,7 +685,7 @@ export default function ReportTable({
                         </div>
                         <div className="flex justify-between">
                           <span className="text-muted-foreground">
-                            Tanggal:
+                            Tanggal Laporan:
                           </span>
                           <span className="font-medium text-gray-900 dark:text-gray-100">
                             {periodType === "Mingguan"
@@ -612,10 +722,6 @@ export default function ReportTable({
                       </div>
                     </div>
 
-                    <p>
-                      Pastikan semua data sudah terisi dengan benar sebelum
-                      melanjutkan.
-                    </p>
                     <p className="font-semibold text-amber-600 dark:text-amber-400">
                       ⚠️ Semua foto wajib diupload !
                     </p>
@@ -634,21 +740,105 @@ export default function ReportTable({
                   </div>
                 </DialogDescription>
               </DialogHeader>
-              <div className="py-4 space-y-3">
+              <div className="py-4 space-y-4">
+                {/* Lokasi Gedung */}
+                <div className="space-y-2">
+                  <Label htmlFor="lokasiGedung" className="text-sm font-medium">
+                    Lokasi Gedung
+                  </Label>
+                  <Input
+                    id="lokasiGedung"
+                    value={lokasiGedung}
+                    onChange={(e) => setLokasiGedung(e.target.value)}
+                    placeholder="Lokasi gedung"
+                    className="text-sm"
+                  />
+                </div>
+                
+                {/* ID Perangkat */}
                 <div className="space-y-2">
                   <Label htmlFor="idPerangkat" className="text-sm font-medium">
-                    ID Perangkat (SIMA) - Opsional
+                    ID Perangkat (SIMA)
                   </Label>
                   <Input
                     id="idPerangkat"
                     value={idPerangkat}
                     onChange={(e) => setIdPerangkat(e.target.value)}
-                    placeholder="Masukkan ID Perangkat (opsional)"
+                    placeholder="Masukkan ID Perangkat"
                     className="text-sm"
                   />
                   <p className="text-xs text-muted-foreground">
-                    Kosongkan jika tidak ada ID Perangkat
+                    {idPerangkat ? "✓ Terisi otomatis dari data gedung" : "Kosongkan jika tidak ada"}
                   </p>
+                </div>
+                
+                {/* Tanggal Tanda Tangan */}
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium">
+                    Tanggal Tanda Tangan
+                  </Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full justify-start text-left font-normal text-sm",
+                          !signatureDate && "text-muted-foreground"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {signatureDate
+                          ? format(signatureDate, "dd MMM yyyy")
+                          : "Pilih tanggal (default: hari ini)"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={signatureDate}
+                        onSelect={setSignatureDate}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+                
+                {/* Tanda Tangan - Manar */}
+                <div className="space-y-2">
+                  <Label htmlFor="manar" className="text-sm font-medium">
+                    Tanda Tangan - Manar
+                  </Label>
+                  <Select value={selectedManar} onValueChange={setSelectedManar}>
+                    <SelectTrigger className="text-sm">
+                      <SelectValue placeholder="Pilih nama Manar" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {allSignatureNames.map((name) => (
+                        <SelectItem key={name} value={name} className="text-sm">
+                          {name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                {/* Tanda Tangan - PIC/Teknisi */}
+                <div className="space-y-2">
+                  <Label htmlFor="pic" className="text-sm font-medium">
+                    Tanda Tangan - PIC/Teknisi
+                  </Label>
+                  <Select value={selectedPic} onValueChange={setSelectedPic}>
+                    <SelectTrigger className="text-sm">
+                      <SelectValue placeholder="Pilih nama PIC/Teknisi" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {allSignatureNames.map((name) => (
+                        <SelectItem key={name} value={name} className="text-sm">
+                          {name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
               <DialogFooter className="gap-2 sm:gap-0">

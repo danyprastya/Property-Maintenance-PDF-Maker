@@ -1,0 +1,1012 @@
+NOTE :
+
+1. AREA BANDUNG - ASCT ITU DI BULAN AGUSTUS DAN SEPTEMBER TIDAK GENSET TAPI DI JULI ADA
+2. area sukabumi id perangkatnya sama 
+3. area bogor id perangkat sama dan ada yang kosong
+
+Area bandung
+    1.Asessment center indonesia 71
+        A.MDP/SDP Bulanan
+            BULAN : JULI
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01599
+            LOKASI GEDUNG : JL. HEGARMANAH NO. 71 BANDUNG
+            ID PERANGKAT (SIMA) : 325304 / 159903LV01-71480
+        B.MDP/SDP Mingguan
+            MINGGU KE		: 3
+            TANGGAL         		: 
+            KODE GEDUNG (SIMA)		: 01599
+            LOKASI GEDUNG		: JL. HEGARMANAH NO. 71 BANDUNG
+            ID PERANGKAT (SIMA)		: 325304 / 159903LV01-71480
+
+        C.Penyalur Petir Bulanan
+            BULAN : JULI
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01599
+            LOKASI GEDUNG : JL. HEGARMANAH NO. 71 BANDUNG
+            ID PERANGKAT (SIMA) : 159903PP01-71481
+
+        # TANDA TANGAN 
+            # MANAR BANDUNG = AMIRUDDIN
+            # PIC = SIGIT RULLY
+    2.Asessment center indonesia Tendean
+        A.COSATSAMF Bulanan
+            BULAN : JULI
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01598
+            LOKASI GEDUNG : JL. KAPTEN TENDEAN NO. 1 BANDUNG
+            ID PERANGKAT (SIMA) : 326037 / 159803GS01-71816
+        B.Penyalur Pertir Bulanan
+            BULAN : JULI
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01598
+            LOKASI GEDUNG : JL. KAPTEN TENDEAN NO. 1 BANDUNG
+            ID PERANGKAT (SIMA) : 325303 / 159803PP01-71819
+        c.PEMERIKSAAN MDP / SDP BULANAN
+            BULAN : JULI
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01598
+            LOKASI GEDUNG : JL. KAPTEN TENDEAN NO. 1 BANDUNG
+            ID PERANGKAT (SIMA) : 325301 / 159803LV01-71477
+        D.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE : 1
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01598
+            LOKASI GEDUNG : JL. KAPTEN TENDEAN NO. 1 BANDUNG
+            ID PERANGKAT (SIMA) : 325301 / 159803LV01-71477
+        E.Genset Bulanan
+            BULAN : JUNI
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01598
+            LOKASI GEDUNG : JL. KAPTEN TENDEAN NO. 1 BANDUNG
+            ID PERANGKAT (SIMA) : 318893 / 159803GS01-71814
+        F.Genset MINGGUAN
+            MINGGU KE : 1
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01598
+            LOKASI GEDUNG : JL. KAPTEN TENDEAN NO. 1 BANDUNG
+            ID PERANGKAT (SIMA) : 318893 / 159803GS01-71814
+    
+    # TANDA TANGAN 
+            # MANAR BANDUNG = AMIRUDDIN
+            # PIC = SIGIT RULLY
+    
+    3.GEDUNG DDS MENARA RISTI INDEX
+        A.PEMERIKSAAN TRAFO 1 500KVA/UNINDO BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG :  GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703TR01-71535
+
+        B.PEMERIKSAAN TRAFO 2 1000KVA/UNINDO BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG : GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703TR01-71534
+
+        c.Pemerikasaan Genset 1 500kv BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG : GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703GS01-71807
+        D.Pemerikasaan Genset 1 600kv BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG : GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703GS01-71821
+
+        E. Pemerikasaan Genset 1 500kv Mingguan
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG : GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703GS01-71807
+
+        F. Pemerikasaan Genset 2 600kv Mingguan
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG : GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703GS01-71821
+
+        G. CUBICLE SWITCH BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG : GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703MV01-71525
+
+        F. Pemerikasaan MDP/SDP BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG : GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703LV01-71527
+
+        G. Pemerikasaan MDP/SDP MINGGUAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG : GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703LV01-71527
+
+        H. Pemerikasaan PENYALUR PETIR BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG : GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703PP01-71496
+
+        I. Pemerikasaan CAPACITOR BANK BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG : GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703KB01-71618
+
+        J. Pemerikasaan COS/ATS/AMF BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1547
+            LOKASI GEDUNG : GD menara risti idex
+            ID PERANGKAT (SIMA) : 154703GS01-71610
+
+        
+
+        # TANDA TANGAN 
+            # MANAR BANDUNG = AMIRUDDIN
+            # PIC  = HERYANTO
+
+    4.GT LEMBONG
+        A.TRAFO 1 PEMERIKSAAN 1 TRAFO BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01329
+            LOKASI GEDUNG : GEDUNG KANTOR TELKOM LEMBONG GD. E JL. LEMBONG NO 11-15 BANDUNG
+            ID PERANGKAT (SIMA) : 132903TR01-69825 / 132903TR01-71623
+        B.TRAFO 2 PEMERIKSAAN  2 TRAFO BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01329
+            LOKASI GEDUNG : GEDUNG KANTOR TELKOM LEMBONG GD. E JL. LEMBONG NO 11-15 BANDUNG
+            ID PERANGKAT (SIMA) : 132903TR01-69826 / 132903TR01-71624
+        c. CUBICLE SWITCH BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01329
+            LOKASI GEDUNG : GEDUNG KANTOR TELKOM LEMBONG GD. E JL. LEMBONG NO 11-15 BANDUNG
+            ID PERANGKAT (SIMA) : 132903MV01-71450
+
+            # TANDA TANGAN 
+            # MANAR BANDUNG = AMIRUDDIN
+            # PIC = RANDI ROMDINI
+
+    5.STO CICADAS
+        A.PEMERIKSAAN TRAFO BULANAN
+            TANGGAL 
+            KODE GEDUNG (SIMA) : 1296
+            LOKASI GEDUNG Jl. A. Yani No.698, Cicaheum, Kec. Kiaracondong, Kota Bandung
+            ID PERANGKAT (SIMA) 325438 / 129603TR01-71614
+        B.PEMERIKSAAN MO CUBICLE / SWITCH BULANAN
+            TANGGAL 
+            KODE GEDUNG (SIMA) : 1296
+            LOKASI GEDUNG Jl. A. Yani No.698, Cicaheum, Kec. Kiaracondong, Kota Bandung
+            ID PERANGKAT (SIMA) 325439 / 160103MV01-71613
+
+        # TANDA TANGAN 
+        # MANAR BANDUNG = AMIRUDDIN
+        # PIC = SIGIT RULLY
+    
+    6.TELKOM CISANGGARUNG
+        A.GENSET MIINGGUAN
+            MINGGU KE 1
+            TANGGAL 
+            KODE GEDUNG (SIMA) : 1231
+            LOKASI : GEDUNG Telkom Cisanggarung
+            ID PERANGKAT (SIMA) 317884 / 123103GS01-71467
+        B.GENSET BULANAN
+            TANGGAL 
+            KODE GEDUNG : (SIMA) 1231
+            LOKASI : GEDUNG Telkom Cisanggarung
+            ID PERANGKAT (SIMA) 317884 / 123103GS01-71467
+        C.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL 
+            KODE GEDUNG (SIMA) 1231
+            LOKASI GEDUNG Telkom Cisanggarung
+            ID PERANGKAT (SIMA) 317886 / 123103GS01-34259
+        D.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE 1
+            TANGGAL 
+            KODE GEDUNG (SIMA) 1231
+            LOKASI GEDUNG Telkom Cisanggarung
+            ID PERANGKAT (SIMA) 325290 / 123103LV03-71466
+        E.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL 
+            KODE GEDUNG (SIMA) 1231
+            LOKASI GEDUNG Telkom Cisanggarung
+            ID PERANGKAT (SIMA) 325290 / 123103LV03-71466
+        F.PEMERIKSAAN CAPACITOR BANK BULANAN
+            TANGGAL 
+            KODE GEDUNG (SIMA) 1231
+            LOKASI GEDUNG Telkom Cisanggarung
+            ID PERANGKAT (SIMA) 317898 / 123103KB03-34271
+        D.PEMERIKSAAN PENYALUR PETIR BULANAN
+            TANGGAL 
+            KODE GEDUNG (SIMA) 1231
+            LOKASI GEDUNG Telkom Cisanggarung
+            ID PERANGKAT (SIMA) 325292 / 123103PP01-71468
+    # TANDA TANGAN 
+        # MANAR BANDUNG = AMIRUDDIN
+        # PIC = GUNAWAN
+    7. GMP BANDUNG
+        A.PEMELIHARAAN GENSET DEUTZ MINGGUAN
+            MINGGU KE : Minggu ke 3
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP JAPATI
+            ID PERANGKAT (SIMA) : 121203GSBS-28158
+        B.PEMELIHARAAN GENSET DEUTZ BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP JAPATI
+            ID PERANGKAT (SIMA) : 121203GSBS-28158
+        C.PEMELIHARAAN GENSET MTU MINGGUAN
+            MINGGU KE : Minggu ke 3
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP JAPATI
+            ID PERANGKAT (SIMA) : 121203GSBS-28157
+        D.PEMELIHARAAN GENSET MTU BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP JAPATI
+            ID PERANGKAT (SIMA) :121203GSBS-28157
+        E.PEMERIKSAAN TRAFO BULANAN
+            TANGGAL : 10 Juli 2025
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP JAPATI
+            ID PERANGKAT (SIMA) : 121203TR01-65830
+        F.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL : 10 Juli 2025
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP BANDUNG
+            ID PERANGKAT (SIMA) : 121203GS09-71449
+        G.PEMERIKSAAN MO CUBICLE / SWITCH BULANAN
+            TANGGAL : 10 Juli 2025
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP Bandung
+            ID PERANGKAT (SIMA) : 121203MV10-71446
+        H.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE : Minggu ke 3
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP BANDUNG
+            ID PERANGKAT (SIMA) : 121203LV09-71448
+        I.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL : 10 Juli 2025
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP BANDUNG
+            ID PERANGKAT (SIMA) : 121203LV09-71448
+        J.PEMERIKSAAN CAPACITOR 1 BANK BULANAN
+            TANGGAL : 10 Juli 2025
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP BANDUNG
+            ID PERANGKAT (SIMA) : 121203KBBS-28160
+        K.PEMERIKSAAN CAPACITOR 2 BANK BULANAN
+            TANGGAL : 10 Juli 2025
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP BANDUNG
+            ID PERANGKAT (SIMA) : 121203KBBS-65824
+        L.PEMERIKSAAN CAPACITOR 3 BANK BULANAN
+            TANGGAL : 10 Juli 2025
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP BANDUNG
+            ID PERANGKAT (SIMA) : 121203KBBS-65825
+        M.PEMERIKSAAN PENYALUR PETIR BULANAN
+            TANGGAL : 1 Juli 2025
+            KODE GEDUNG (SIMA) : 1212
+            LOKASI GEDUNG : GMP Bandung
+            ID PERANGKAT (SIMA) : 121203PP09-71447
+        
+     # TANDA TANGAN 
+        # MANAR = AMIRUDDIN
+        # PIC = AANG CEPI
+
+    8.GT RAJAWALI
+        A.PEMERIKSAAN TRAFO BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1552
+            LOKASI GEDUNG : GT. RAJAWALI GEDUNG B WITEL BANDUNG BARAT
+            ID PERANGKAT (SIMA) : 155203TR01-71817
+        B. PEMERIKSAAN MO CUBICLE / SWITCH BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1552
+            LOKASI GEDUNG : GT. RAJAWALI GEDUNG B WITEL BANDUNG BARAT
+            ID PERANGKAT (SIMA) : 155203MV01-00001 / 155203MV01-71818
+    # TANDA TANGAN 
+        # MANAR BANDUNG = AMIRUDDIN
+        # PIC = RANDI ROMDINI
+    
+    9.PLASA SUPRATMAN
+        A.PEMELIHARAAN GENSET MINGGUAN
+            MINGGU KE 1
+            TANGGAL 4 Juli 2025
+            KODE GEDUNG (SIMA) 1323
+            LOKASI GEDUNG JL. SUPRATMAN NO. 62 BANDUNG
+            ID PERANGKAT (SIMA) 325328 / 132303GS01-71504
+        B.PEMELIHARAAN GENSET BULANAN
+            TANGGAL 4 Juli 2025
+            KODE GEDUNG (SIMA) 1323
+            LOKASI GEDUNG JL. SUPRATMAN NO. 62 BANDUNG
+            ID PERANGKAT (SIMA) 325328 / 132303GS01-71504
+        C.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL 4 Juli 2025
+            KODE GEDUNG (SIMA) 1323
+            LOKASI GEDUNG JL. SUPRATMAN NO. 62 BANDUNG
+            ID PERANGKAT (SIMA) 325331 / 132303GS01-71507
+        D.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE 1
+            TANGGAL 4 Juli 2025
+            KODE GEDUNG (SIMA) 1323
+            LOKASI GEDUNG JL. SUPRATMAN NO. 62 BANDUNG
+            ID PERANGKAT (SIMA) 325329 / 132303LV01-71505
+        E.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL 4 Juli 2025
+            KODE GEDUNG (SIMA) 1323
+            LOKASI GEDUNG JL. SUPRATMAN NO. 62 BANDUNG
+            ID PERANGKAT (SIMA) 325329 / 132303LV01-71505
+        F.PEMERIKSAAN PENYALUR PETIR BULANAN
+            TANGGAL 7 juli 2025
+            KODE GEDUNG (SIMA) 1323
+            LOKASI GEDUNG JL. SUPRATMAN NO. 62 BANDUNG
+            ID PERANGKAT (SIMA) 325333 / 132303PP01-71509
+
+        # TANDA TANGAN 
+        # MANAR BANDUNG = AMIRUDDIN
+        # PIC = GUNAWAN
+    10.STO GEGERKALONG
+        A.PEMERIKSAAN MO CUBICLE / SWITCH BULANAN
+            TANGGAL : 16 JULI 2025
+            KODE GEDUNG (SIMA) : 01601
+            LOKASI GEDUNG : JL. GEGERKALONG HILIR NO. 65
+            ID PERANGKAT (SIMA) : 325437 / 160103MV01-71613
+        B.PEMERIKSAAN TRAFO BULANAN
+            TANGGAL : 16 JULI 2025
+            KODE GEDUNG (SIMA) : 01601
+            LOKASI GEDUNG : JL. GEGERKALONG HILIR NO. 65
+            ID PERANGKAT (SIMA) : 325437 / 160103TR01-71612
+        
+        # TANDA TANGAN 
+            # MANAR BANDUNG = AMIRUDDIN
+            # TEKNISI CMPE  = DIAN NURTAHYUDIAN
+
+    11.plasa cimahi
+        A.PEMELIHARAAN GENSET MINGGUAN
+            MINGGU KE : MINGGU KE-1
+            TANGGAL : 4 Juli 2025
+            KODE GEDUNG (SIMA) : 01556
+            LOKASI GEDUNG : PLASA BAROS CIMAHI
+            ID PERANGKAT (SIMA) : 317637 / 155603GS01-34073
+        B.PEMELIHARAAN GENSET BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 01556
+            LOKASI GEDUNG : PLASA BAROS CIMAHI
+            ID PERANGKAT (SIMA) : 317637 / 155603GS01-34073
+        C.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 01556
+            LOKASI GEDUNG : GT. BAROS / PLASA CIMAHI
+            ID PERANGKAT (SIMA) : 155603GS01-00004 / 155603GS01-34076
+        D.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE : MINGGU KE 1
+            TANGGAL : 4 Juli 2025
+            KODE GEDUNG (SIMA) : 01556
+            LOKASI GEDUNG : PLASA BAROS CIMAHI
+            ID PERANGKAT (SIMA) : 317641 / 155603LV01-34077
+        E.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 01556
+            LOKASI GEDUNG : PLASA BAROS CIMAHI
+            ID PERANGKAT (SIMA) : 317641 / 155603LV01-34077
+        # TANDA TANGAN 
+            # MANAR BANDUNG = AMIRUDDIN
+            # PIC = ASEP SOLEH 
+
+    12.TCU 1
+        A.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE : MINGGU KE 1
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 01556
+            LOKASI GEDUNG : TCU 1
+            ID PERANGKAT (SIMA) : : 533590645509 / 161803LV01-71540
+        B.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1611
+            LOKASI GEDUNG : PLASA BAROS CIMAHI
+            ID PERANGKAT (SIMA) : : 533590645509 / 161803LV01-71540
+        C.PEMELIHARAAN GENSET MINGGUAN
+            MINGGU KE : MINGGU KE-1
+            TANGGAL : 4 Juli 2025
+            KODE GEDUNG (SIMA) : 1611
+            LOKASI GEDUNG : TCU 1
+            ID PERANGKAT (SIMA) : 533590645509 / 161103GS01-71627
+        D.PEMELIHARAAN GENSET BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1611
+            LOKASI GEDUNG : TCU 1
+            ID PERANGKAT (SIMA) : : 533590645509 / 161103GS01-71627
+        E.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1611
+            LOKASI GEDUNG : TCU 1
+            ID PERANGKAT (SIMA) : 533590645509 / 161103GS01-71538
+        F.PEMERIKSAAN PENYALUR PETIR BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1611
+            LOKASI GEDUNG : TCU 1
+            ID PERANGKAT (SIMA) : 533590645509 / 161103PP01-71499
+
+        # TANDA TANGAN 
+            # MANAR BANDUNG = AMIRUDDIN
+            # PIC = HERYANTO
+
+    13.TCU 2
+        A.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE : MINGGU KE 1
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1618
+            LOKASI GEDUNG : TCU 2
+            ID PERANGKAT (SIMA) :  535590769200 / 162003LV01-71543
+
+        B.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL :  
+            KODE GEDUNG (SIMA) : 1618
+            LOKASI GEDUNG : TCU 2
+            ID PERANGKAT (SIMA) :  535590769200 / 162003LV01-71543
+        C.PEMELIHARAAN GENSET MINGGUAN
+            MINGGU KE : MINGGU KE-1
+            TANGGAL : 4 Juli 2025
+            KODE GEDUNG (SIMA) : 1618
+            LOKASI GEDUNG : TCU 2
+            ID PERANGKAT (SIMA) : 535590769200 / 161803GS01-71539
+        D.PEMELIHARAAN GENSET BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1618
+            LOKASI GEDUNG : TCU 2
+            ID PERANGKAT (SIMA) : : 535590769200 / 161803GS01-71539
+        E.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1618
+            LOKASI GEDUNG : TCU 2
+            ID PERANGKAT (SIMA) : 535590769200 / 161803GS01-71541
+        F.PEMERIKSAAN PENYALUR PETIR BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1618
+            LOKASI GEDUNG : TCU 2
+            ID PERANGKAT (SIMA) : 535590769200 / 161803PP01-71498
+
+         # TANDA TANGAN 
+            # MANAR BANDUNG = AMIRUDDIN
+            # PIC = HERYANTO
+    14. TCU 3
+        A.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE : MINGGU KE 1
+            TANGGAL : 
+            KODE GEDUNG (SIMA) : 1608
+            LOKASI GEDUNG : TCU 3
+            ID PERANGKAT (SIMA) : 535593451914 / 160803LV03-71546
+        B.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL :  
+            KODE GEDUNG (SIMA) : 1608
+            LOKASI GEDUNG : TCU 3
+            ID PERANGKAT (SIMA) : : 535593451914 / 160803LV03-71546
+        C.PEMELIHARAAN GENSET MINGGUAN
+            MINGGU KE : MINGGU KE-1
+            TANGGAL : 4 Juli 2025
+            KODE GEDUNG (SIMA) : 1608
+            LOKASI GEDUNG : TCU 3
+            ID PERANGKAT (SIMA) : 535593451914 / 160803GS03-71542
+        D.PEMELIHARAAN GENSET BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1608
+            LOKASI GEDUNG : TCU 3
+            ID PERANGKAT (SIMA) : : 535593451914 / 160803GS03-71542
+        E.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1608
+            LOKASI GEDUNG : TCU 3
+            ID PERANGKAT (SIMA) : 535593451914 / 160803GS03-71545
+        F.PEMERIKSAAN PENYALUR PETIR BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1608
+            LOKASI GEDUNG : TCU 3
+            ID PERANGKAT (SIMA) : 535593451914 / 160803PP03-71497
+        G.Pemerikasaan TRAFO BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1608
+            LOKASI GEDUNG : TCU 3
+            ID PERANGKAT (SIMA) : 535593451914 / 160803TR03-71543
+        H.Pemerikasaan CUBICLE SWITCH BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1608
+            LOKASI GEDUNG : TCU 3
+            ID PERANGKAT (SIMA) : 535593451914 / 160803MV03-71544
+        I.Pemerikasaan CAPACITOR BANK BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1608
+            LOKASI GEDUNG : TCU 3
+            ID PERANGKAT (SIMA) : 
+        J.Pemerikasaan PENYALUR PETIR BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1608
+            LOKASI GEDUNG : TCU 3
+            ID PERANGKAT (SIMA) : 535593451914 / 160803PP03-71497
+
+
+
+
+        
+    # TANDA TANGAN 
+    # MANAR BANDUNG = AMIRUDDIN
+    # PIC = HERYANTO
+
+
+
+Area Tasik
+    1.GT CENTRUM PRAMUKA
+        A.PEMELIHARAAN GENSET MINGGUAN
+            MINGGU KE : 3
+            TANGGAL : 18 juli 2025
+            KODE GEDUNG (SIMA) : 1341
+            LOKASI GEDUNG : GT. CENTRUM PRAMUKA
+            ID PERANGKAT (SIMA) : 325284
+        B.PEMELIHARAAN GENSET BULANAN
+            TANGGAL 25 juli 2025
+            KODE GEDUNG (SIMA) 1341
+            LOKASI GEDUNG GT. CENTRUM PRAMUKA
+            ID PERANGKAT (SIMA) 325284
+        C.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL 18 juli 2025
+            KODE GEDUNG (SIMA) 1341
+            LOKASI GEDUNG GT. CENTRUM PRAMUKA
+            ID PERANGKAT (SIMA) 325284
+        D.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE 3
+            TANGGAL 17 juli 2025
+            KODE GEDUNG (SIMA) 1341
+            LOKASI GEDUNG GT. CENTRUM PRAMUKA
+            ID PERANGKAT (SIMA) 273483
+        E.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL 31 juli 2025
+            KODE GEDUNG (SIMA) 1341
+            LOKASI GEDUNG GT.centrum pramuka
+            ID PERANGKAT (SIMA) 273483
+        
+        #TANDA TANGAN 
+            #  = rUDI sEPTINA
+            # PETUGAS PELAKSANA  = MUHAMMAD ROFA
+    
+    2.PLASA CIAMIS 
+        A.PEMELIHARAAN GENSET MINGGUAN
+            MINGGU KE : 3
+            TANGGAL : 18 Juli 2025 KODE GEDUNG (SIMA) : 1253
+            LOKASI GEDUNG : Gedung Plasa Ciamis
+            ID PERANGKAT (SIMA) : 125303GS01-00001
+        B.PEMELIHARAAN GENSET BULANAN
+            TANGGAL : 29 Juli 2025
+            KODE GEDUNG (SIMA) : 1253
+            LOKASI GEDUNG : Gedung Plasa Ciamis
+            ID PERANGKAT (SIMA) : 125303GS01-00001
+        C.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE : 3
+            TANGGAL : 18 Juli 2025
+            KODE GEDUNG (SIMA) : 1253
+            LOKASI GEDUNG : Gedung Plasa Ciamis
+            ID PERANGKAT (SIMA) : 125303LV01-00065
+        D.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL : 29 Juli 2025
+            KODE GEDUNG (SIMA) : 1253
+            LOKASI GEDUNG : Gedung Plasa Ciamis
+            ID PERANGKAT (SIMA) : 125303LV01-00065
+        E.PEMERIKSAAN PENYALUR PETIR BULANAN
+            TANGGAL : 29 Juli 2025 
+            KODE GEDUNG (SIMA) : 1253
+            LOKASI GEDUNG : Gedung Plasa Ciamis
+            ID PERANGKAT (SIMA) : 125303PP01-00001
+        F.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL : 29 Juli 2025 
+            KODE GEDUNG (SIMA) : 1253 
+            LOKASI GEDUNG : Gedung Plasa Ciamis
+            ID PERANGKAT (SIMA) : 125303GS01-00002
+        
+        #TANDA TANGAN 
+            #  = DENI HANDANI
+            # PETUGAS PELAKSANA  = ARI ARIYANTO
+    3.STO GARUT
+        A.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE : 1
+            TANGGAL : 4 Juli 2025
+            KODE GEDUNG (SIMA) : 01340
+            LOKASI GEDUNG : PLASA SILIWANGI NO 31
+            ID PERANGKAT (SIMA) : 325282
+        B.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL : 26 Juli 2025
+            KODE GEDUNG (SIMA) : 01340
+            LOKASI GEDUNG : PLASA SILIWANGI NO 31
+            ID PERANGKAT (SIMA) : 325282
+        #TANDA TANGAN 
+            #  = rUDI sEPTINA
+            # PETUGAS PELAKSANA  = MUHAMMAD ROFA
+
+    
+    4.PLASA TASIK
+        A.PEMELIHARAAN GENSET MINGGUAN
+            MINGGU KE : 3
+            TANGGAL : 18 Juli 2025 KODE GEDUNG (SIMA) : 1269
+            LOKASI GEDUNG : GT PLASA TELKOM TASIKMALAYA
+            ID PERANGKAT (SIMA) : 1269036501-00001
+        B.PEMELIHARAAN GENSET BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1269
+            LOKASI GEDUNG : GT PLASA TELKOM TASIKMALAYA
+            ID PERANGKAT (SIMA) :1269036501-00001
+        C.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL : 18 Juli 2025
+            KODE GEDUNG (SIMA) : 1269
+            LOKASI GEDUNG : GT PLASA TELKOM TASIKMALAYA
+            ID PERANGKAT (SIMA) :126903GS01-00002
+        D.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE : 3
+            TANGGAL : 18 Juli 2025
+            KODE GEDUNG (SIMA) : 1269
+            LOKASI GEDUNG : GT PLASA TELKOM TASIKMALAYA
+            ID PERANGKAT (SIMA) : 1269036501-00001
+        E.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1269
+            LOKASI GEDUNG : GT PLASA TELKOM TASIKMALAYA
+            ID PERANGKAT (SIMA) : 1269036501-00001
+        F.PEMERIKSAAN PENYALUR PETIR BULANAN
+            TANGGAL : 24 Juli 2025 
+            KODE GEDUNG (SIMA) : 1269
+            LOKASI GEDUNG : GT PLASA TELKOM TASIKMALAYA
+            ID PERANGKAT (SIMA) :126903PP02-00001
+    
+        #TANDA TANGAN 
+            #  = SAMSUL WIRAHMANA 
+            # PETUGAS PELAKSANA  = AFIF DARMAWAN
+
+    5.STO TASIK 
+        A.PEMERIKSAAN TRAFO BULANAN
+            TANGGAL : 21 Juli 2025 KODE GEDUNG (SIMA) :1265
+            LOKASI GEDUNG :STO Tasikmalaya
+            ID PERANGKAT (SIMA) :126503TR01-00001
+        B.PEMERIKSAAN MO CUBICLE / SWITCH BULANAN
+            TANGGAL :21 Juli 2025
+            KODE GEDUNG (SIMA) :1265
+            LOKASI GEDUNG :STO Tasikmalaya
+            ID PERANGKAT (SIMA) :126503TR01-00001
+       #TANDA TANGAN 
+            #  = SAMSUL WIRAHMANA 
+            # PETUGAS PELAKSANA  = AFIF DARMAWAN
+
+AREA SUKABUMI
+    1.STO CIANJUR 
+        A.PEMERIKSAAN MO CUBICLE / SWITCH BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1520
+            LOKASI GEDUNG : GT Cianjur STO Cianjur
+            ID PERANGKAT (SIMA) : 3253200701
+        B.PEMERIKSAAN TRAFO BULANAN
+            TANGGAL : 25 Juli 2025
+            KODE GEDUNG (SIMA) : 1520
+            LOKASI GEDUNG : GT Cianjur STO Cianjur
+            ID PERANGKAT (SIMA) : 3253200701
+            
+        #TANDA TANGAN 
+            # MANAR AREA PRIANGAN BARAT = NANAG EKO P
+            # PETUGAS PELAKSANA  = RIDWAN BADRU SALAM
+    2.TELKOM PLASA CIANJUR 
+        A.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL : 25 Juli 2025 
+            KODE GEDUNG (SIMA) : 1522 
+            LOKASI GEDUNG : DATEL CIANJUR GT. PLAZA TELKOM
+            ID PERANGKAT (SIMA) : 3460110801
+        B.PEMELIHARAAN GENSET BULANAN
+            TANGGAL : 25 Juli 2025 
+            KODE GEDUNG (SIMA) : 1522 
+            LOKASI GEDUNG : DATEL CIANJUR GT. PLAZA TELKOM
+            ID PERANGKAT (SIMA) : 3460110801 
+        C.PEMELIHARAAN GENSET MINGGUAN
+            MINGGU KE : Minggu 2 
+            TANGGAL : 11 Juli 2025 
+            KODE GEDUNG (SIMA) : 1522 
+            LOKASI GEDUNG : DATEL CIANJUR GT. PLAZA TELKOM
+            ID PERANGKAT (SIMA) : 3460110801
+        D.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL : 25 Juli 2025 
+            KODE GEDUNG (SIMA) : 1522 
+            LOKASI GEDUNG : DATEL CIANJUR GT. PLAZA TELKOM
+            ID PERANGKAT (SIMA) : 3460110801
+        E.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE : 1 
+            TANGGAL : 04 Juli 2025 
+            KODE GEDUNG (SIMA) : 1522 
+            LOKASI GEDUNG : DATEL CIANJUR GT. PLAZA TELKOM
+            ID PERANGKAT (SIMA) : 3460110801
+        F.PEMERIKSAAN PENYALUR PETIR BULANAN
+            TANGGAL : 25 Juli 2025 
+            KODE GEDUNG (SIMA) : 1522 
+            LOKASI GEDUNG : DATEL CIANJUR GT. PLAZA TELKOM
+            ID PERANGKAT (SIMA) : 3460110801
+        #TANDA TANGAN 
+            # MANAR AREA PRIANGAN BARAT = NANAG EKO P
+            # PETUGAS PELAKSANA  = RIDWAN BADRU SALAM
+    3.TELKOM GD PRIANGAN BARAT
+        A.PEMELIHARAAN GENSET MINGGUAN
+            MINGGU KE : 1
+            TANGGAL : 04/07/2025
+            KODE GEDUNG (SIMA) : 01534
+            LOKASI GEDUNG : 3253200101
+            ID PERANGKAT (SIMA) : 311600
+        B.PEMELIHARAAN GENSET BULANAN
+            TANGGAL : 31/07/2025
+            KODE GEDUNG (SIMA) : 01534
+            LOKASI GEDUNG : 3253200101
+            ID PERANGKAT (SIMA) : 311600
+        C.PEMERIKSAAN COS / ATS / AMF BULANAN
+            TANGGAL : 31/07/2025
+            KODE GEDUNG (SIMA) : 01534
+            LOKASI GEDUNG : 3253200101
+            ID PERANGKAT (SIMA) : 311600
+        D.PEMERIKSAAN MDP / SDP MINGGUAN
+            MINGGU KE : 04/07/2025
+            TANGGAL : 01534
+            KODE GEDUNG (SIMA) : 3253200101
+            LOKASI GEDUNG : 311600
+            ID PERANGKAT (SIMA) : 153403LV01-71474
+        E.PEMERIKSAAN MDP / SDP BULANAN
+            TANGGAL : 31/07/2025
+            KODE GEDUNG (SIMA) : 01534
+            LOKASI GEDUNG : 3253200101
+            ID PERANGKAT (SIMA) : 311600
+        F.PEMERIKSAAN PENYALUR PETIR BULANAN
+            TANGGAL : 28 Juli 2025
+            KODE GEDUNG (SIMA) : 01534
+            LOKASI GEDUNG :153403PP01-71476
+            ID PERANGKAT (SIMA) :325300
+        #TANDA TANGAN 
+            # MANAR AREA PRIANGAN BARAT = NANAG EKO P
+            # PETUGAS PELAKSANA  = FITRA PHILA LISMANA
+
+Area Cirebon
+    1.PLASA INDRAMAYU
+        A. PEMELIHARAAN GENSET MINGGUAN		
+            MINGGU KE		: Minggu ke 1
+            TANGGAL         		:  08 Juli 2025
+            KODE GEDUNG (SIMA)		: 01198
+            LOKASI GEDUNG		: Plasa Indramayu
+            ID PERANGKAT (SIMA)		: 119803GS01-66124
+        B.PEMELIHARAAN GENSET BULANAN		
+            TANGGAL         		: 30 Juli 2025
+            KODE GEDUNG (SIMA)		: 01198
+            LOKASI GEDUNG		: Plasa Indramayu
+            ID PERANGKAT (SIMA)		: 119803GS01-66124
+        C.PEMERIKSAAN COS / ATS / AMF BULANAN		
+            TANGGAL         		: 30 Juli 2025
+            KODE GEDUNG (SIMA)		: 01198
+            LOKASI GEDUNG		: Plasa Indramayu
+            ID PERANGKAT (SIMA)		: 119803GS01-71472
+        D.PEMERIKSAAN PENYALUR PETIR BULANAN		
+            TANGGAL         		: 31 Juli 2025
+            KODE GEDUNG (SIMA)		: 01198
+            LOKASI GEDUNG		: Plasa Indramayu
+            ID PERANGKAT (SIMA)		: 119803PP01-71473
+        E.PEMERIKSAAN MDP / SDP MINGGUAN		
+            MINGGU KE		: Minggu ke 1
+            TANGGAL         		: 08 Juli 2025
+            KODE GEDUNG (SIMA)		: 01198
+            LOKASI GEDUNG		: Plasa Indramayu
+            ID PERANGKAT (SIMA)		: 119803LV01-71471
+        D.PEMERIKSAAN MDP / SDP BULANAN		
+            TANGGAL         		: 29 Juli 2025
+            KODE GEDUNG (SIMA)		: 01198
+            LOKASI GEDUNG		: Plasa Indramayu
+            ID PERANGKAT (SIMA)		: 119803LV01-71471
+        #TANDA TANGAN 
+            #  = MAHSUN EFENDI
+            # PETUGAS PELAKSANA  = HERI SUSANTO 
+
+    2.PLASA SILIWANGI
+        A.PEMELIHARAAN GENSET MINGGUAN		
+            MINGGU KE		: Minggu ke 1
+            TANGGAL         		: 8 Juli 2025
+            KODE GEDUNG (SIMA)		: 1246
+            LOKASI GEDUNG		: Plasa Siliwangi 
+            ID PERANGKAT (SIMA)		: 124603GS01-71611
+        
+        B.PEMELIHARAAN GENSET BULANAN		
+            TANGGAL         		: 29 Juli 2025
+            KODE GEDUNG (SIMA)		: 1246
+            LOKASI GEDUNG		: Plasa Siliwangi 
+            ID PERANGKAT (SIMA)		: 124603GS01-71611
+        
+        C.PEMERIKSAAN COS / ATS / AMF BULANAN		
+            TANGGAL         		: 28 Juli 2025
+            KODE GEDUNG (SIMA)		: 01246
+            LOKASI GEDUNG		: Grapari Siliwangi 
+            ID PERANGKAT (SIMA)		: 119803GS01-71472
+        
+        #TANDA TANGAN 
+            #  = MAHSUN EFENDI
+            # PETUGAS PELAKSANA  = M FIQRI S
+        
+    3.WITEL Cirebon
+        A. PEMERIKSAAN TRAFO BULANAN		
+            TANGGAL         		: 4 july 2025
+            KODE GEDUNG (SIMA)		: 1247
+            LOKASI GEDUNG		: Witel Cirebon
+            ID PERANGKAT (SIMA)		: 124703TR01-71452
+		B. PEMERIKSAAN MO CUBICLE / SWITCH BULANAN		
+            TANGGAL         		: 7 July 2025
+            KODE GEDUNG (SIMA)		: 1247
+            LOKASI GEDUNG		: Witel Cirebon
+            ID PERANGKAT (SIMA)		: 124703MV01-71451
+        
+        #TANDA TANGAN 
+            #  = MAHSUN EFENDI
+            # PETUGAS PELAKSANA  = M FIQRI S
+
+AREA BOGOR 
+    1.WITEL BOGOR
+        A.PEMELIHARAAN GENSET MINGGUAN		
+            MINGGU KE		: 1
+            TANGGAL		: 5 Juli 2025
+            KODE GEDUNG (SIMA)		: 2213
+            LOKASI GEDUNG		: KANTOR WITEL BOGOR
+            ID PERANGKAT (SIMA)		: 02213
+        B.PEMELIHARAAN GENSET BULANAN		
+            TANGGAL		: 30 Juli 2025
+            KODE GEDUNG (SIMA)		: 2213
+            LOKASI GEDUNG		: KANTOR WITEL BOGOR
+            ID PERANGKAT (SIMA)		: 02213
+        C.PEMERIKSAAN TRAFO BULANAN		
+            TANGGAL		: 30 Juli 2025
+            KODE GEDUNG (SIMA)		: 2213
+            LOKASI GEDUNG		: KANTOR WITEL BOGOR
+            ID PERANGKAT (SIMA)		: 02213
+        D.PEMERIKSAAN COS / ATS / AMF BULANAN		
+            TANGGAL		: 30 Juli 2025
+            KODE GEDUNG (SIMA)		: 2213
+            LOKASI GEDUNG		: KANTOR WITEL BOGOR
+            ID PERANGKAT (SIMA)		: 02213
+        E.PEMERIKSAAN MO CUBICLE / SWITCH BULANAN		
+            TANGGAL		: 30 Juli 2025
+            KODE GEDUNG (SIMA)		: 2213
+            LOKASI GEDUNG		: KANTOR WITEL BOGOR
+            ID PERANGKAT (SIMA)		: 02213
+        F.PEMERIKSAAN MDP / SDP MINGGUAN		
+            MINGGU KE		: 1
+            TANGGAL		: 5 Juli 2025
+            KODE GEDUNG (SIMA)		: 2213
+            LOKASI GEDUNG		: KANTOR WITEL BOGOR
+            ID PERANGKAT (SIMA)		: 02213
+        G.PEMERIKSAAN MDP / SDP BULANAN		
+            TANGGAL		: 30 Mei 2025
+            KODE GEDUNG (SIMA)		: 2213
+            LOKASI GEDUNG		: KANTOR WITEL BOGOR
+            ID PERANGKAT (SIMA)		: 02213
+        H.PEMERIKSAAN CAPACITOR BANK BULANAN		
+            TANGGAL		: 30 Mei 2025
+            KODE GEDUNG (SIMA)		: 2213
+            LOKASI GEDUNG		: KANTOR WITEL BOGOR
+            ID PERANGKAT (SIMA)		: 02213
+        I.PEMERIKSAAN PENYALUR PETIR BULANAN		
+            TANGGAL		: 30 Mei 2025
+            KODE GEDUNG (SIMA)		: 2213
+            LOKASI GEDUNG		: KANTOR WITEL BOGOR
+            ID PERANGKAT (SIMA)		: 02213
+    2.STO CIBINONG
+        A.PEMELIHARAAN GENSET MINGGUAN		
+            MINGGU KE		: Minggu 1
+            TANGGAL		: 
+            KODE GEDUNG (SIMA)		: 2143201401
+            LOKASI GEDUNG		: STO CIBINONG
+            ID PERANGKAT (SIMA)		: 224902GS01-00002
+        B.PEMELIHARAAN GENSET BULANAN		                    
+            TANGGAL		: 30 JULI 2025
+            KODE GEDUNG (SIMA)		: 2143201401
+            LOKASI GEDUNG		: STO CIBINONG
+            ID PERANGKAT (SIMA)		: 224902GS01-00002
+        C.PEMERIKSAAN TRAFO BULANAN		
+            TANGGAL		: 30 JULI 2025
+            KODE GEDUNG (SIMA)		: 2143201401
+            LOKASI GEDUNG		: STO CIBINONG
+            ID PERANGKAT (SIMA)		: 224902GS01-00002
+        D.PEMERIKSAAN COS / ATS / AMF BULANAN		
+            TANGGAL		: 30 JULI 2025
+            KODE GEDUNG (SIMA)		: 2143201401
+            LOKASI GEDUNG		: STO CIBINONG
+            ID PERANGKAT (SIMA)		: 224902GS01-00002
+        E.PEMERIKSAAN MO CUBICLE / SWITCH BULANAN		
+            TANGGAL		: 30 JULI 2025
+            KODE GEDUNG (SIMA)		: 2143201401
+            LOKASI GEDUNG		: STO CIBINONG
+            ID PERANGKAT (SIMA)		: 224902GS01-00002
+        F.PEMERIKSAAN MDP / SDP MINGGUAN		
+            MINGGU KE		: Minggu 1
+            TANGGAL		:
+            KODE GEDUNG (SIMA)		: 2143201401
+            LOKASI GEDUNG		: STO CIBINONG
+            ID PERANGKAT (SIMA)		: 224902GS01-00002
+        G.PEMERIKSAAN MDP / SDP BULANAN		
+            TANGGAL		: 
+            KODE GEDUNG (SIMA)		: 2143201401
+            LOKASI GEDUNG		: STO CIBINONG
+            ID PERANGKAT (SIMA)		: 224902GS01-00002
+        H.PEMERIKSAAN CAPACITOR BANK BULANAN		
+            TANGGAL		
+            KODE GEDUNG (SIMA)		: 2143201401
+            LOKASI GEDUNG		: STO CIBINONG
+            ID PERANGKAT (SIMA)		: 224902GS01-00002
+        I.PEMERIKSAAN PENYALUR PETIR BULANAN		
+            TANGGAL		: 
+            KODE GEDUNG (SIMA)		: 2143201401
+            LOKASI GEDUNG		: STO CIBINONG
+            ID PERANGKAT (SIMA)		: 224902GS01-00002
+    3.PLASA PARUNG 
+        A.PEMELIHARAAN GENSET MINGGUAN		
+            MINGGU KE		: Minggu 1
+            TANGGAL		: 7 Juli 2025
+            KODE GEDUNG (SIMA)		: 2359
+            LOKASI GEDUNG		: PLASA PARUNG
+            ID PERANGKAT (SIMA)		: 235902GS01-01
+        B.PEMELIHARAAN GENSET BULANAN		                  
+            TANGGAL		: 30 Juli 2025
+            KODE GEDUNG (SIMA)		: 2410
+            LOKASI GEDUNG		: PLASA PARUNG
+            ID PERANGKAT (SIMA)		: 241002GSGR-01
+        C.PEMERIKSAAN PENYALUR PETIR BULANAN		
+            TANGGAL		: 30 Juli 2025
+            KODE GEDUNG (SIMA)		#REF!
+            LOKASI GEDUNG		#REF!
+            ID PERANGKAT (SIMA)		:
+        D.PEMERIKSAAN MDP / SDP MINGGUAN		
+            MINGGU KE		: Minggu 2
+            TANGGAL		: 14 Juli 2025
+            KODE GEDUNG (SIMA)		: 2410
+            LOKASI GEDUNG		: PLASA PARUNG
+            ID PERANGKAT (SIMA)		:
+        E.PEMERIKSAAN MDP / SDP BULANAN		
+            TANGGAL		: 29 Juli 2025
+            KODE GEDUNG (SIMA)		: 2410
+            LOKASI GEDUNG		: PLASA PARUNG
+            ID PERANGKAT (SIMA)		:
+        #TANDA TANGAN 
+            # MANAR AREA JAKSEL & BOGOR  = NANANG EKO P
+            # PETUGAS PELAKSANA  = TRO DEPOK = ARIP SUPRIYADI
+    4.PLASA DEPOK 
+        A.PEMELIHARAAN GENSET MINGGUAN		
+            MINGGU KE		: Minggu 1
+            TANGGAL		: 7 Juli 2025
+            KODE GEDUNG (SIMA)		: 2359
+            LOKASI GEDUNG		: PLASA DEPOK
+            ID PERANGKAT (SIMA)		: 235902GS01-01
+        B.PEMELIHARAAN GENSET BULANAN		
+            TANGGAL		: 29 Juli 2025
+            KODE GEDUNG (SIMA)		: 2359
+            LOKASI GEDUNG		: PLASA DEPOK
+            ID PERANGKAT (SIMA)		: 235902GS01-01
+        C.PEMERIKSAAN COS / ATS / AMF BULANAN		
+            TANGGAL		: 29 Juli 2025
+            KODE GEDUNG (SIMA)		: 2359
+            LOKASI GEDUNG		: PLASA DEPOK
+            ID PERANGKAT (SIMA)		:
+        D.PEMERIKSAAN PENYALUR PETIR BULANAN		
+            TANGGAL		: 28 Juli 2025
+            KODE GEDUNG (SIMA)		: 2359
+            LOKASI GEDUNG		: PLASA DEPOK
+            ID PERANGKAT (SIMA)		:
+    5.STO SUKMAJAYA
+        A.PEMERIKSAAN MO CUBICLE / SWITCH BULANAN		
+            TANGGAL		: 24 JULI 2025
+            KODE GEDUNG (SIMA)		: 2363
+            LOKASI GEDUNG		: STO SUKMAJAYA
+            ID PERANGKAT (SIMA)		: 
+        B.PEMERIKSAAN TRAFO BULANAN		
+            TANGGAL		: 24 JULI 2025
+            KODE GEDUNG (SIMA)		: 2362
+            LOKASI GEDUNG		: STO SUKMAJAYA
+            ID PERANGKAT (SIMA)		: 
+        #TANDA TANGAN 
+                # MANAR AREA JAKSEL & BOGOR  = NANANG EKO P
+                # PETUGAS PELAKSANA  = TRO DEPOK = ARIP SUPRIYADI

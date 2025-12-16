@@ -4,4 +4,13 @@ export const buildings = [
   "TCU 3",
   "GD Menara Risti Idex",
   "Telkom Cisanggarung",
+  "Assessment Center Indonesia 71",
+  "Assessment Center Indonesia Tendean",
+  "GT Lembong",
+  "STO Cicadas",
+  "GMP Bandung",
+  "GT Rajawali",
+  "Plasa Supratman",
+  "STO Gegerkalong",
+  "Plasa Cimahi",
 ] as const;
