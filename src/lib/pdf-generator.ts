@@ -5,6 +5,149 @@ import { format } from "date-fns";
 import type { FormEntry, FormType } from "@/types/form";
 import { formTypes } from "@/config/form-types";
 
+// Flag untuk track apakah font sudah di-load
+let fontLoaded = false;
+let fontBase64Cache: string | null = null;
+
+/**
+ * Normalize Unicode characters yang tidak support di jsPDF default font
+ * Mengganti karakter spesial dengan ASCII equivalent yang readable
+ * Hanya digunakan sebagai fallback jika custom font gagal di-load
+ */
+function normalizeTextForPDF(text: string): string {
+  if (!text) return text;
+  
+  return text
+    .replace(/≤/g, '≤')      // Keep as is if font supports, otherwise will be normalized below
+    .replace(/≥/g, '≥')      // Keep as is if font supports
+    .replace(/°/g, '°')      // Keep as is if font supports
+    .replace(/±/g, '±')      // Keep as is if font supports
+    .replace(/–/g, '-')       // En dash to hyphen
+    .replace(/—/g, '-')       // Em dash to hyphen
+    .replace(/'/g, "'")       // Smart quotes
+    .replace(/'/g, "'")
+    .replace(/"/g, '"')
+    .replace(/"/g, '"');
+}
+
+/**
+ * Fallback: Convert Unicode to ASCII when font doesn't support it
+ */
+function fallbackNormalize(text: string): string {
+  if (!text) return text;
+  
+  return text
+    .replace(/≤/g, '<=')      // Less than or equal
+    .replace(/≥/g, '>=')      // Greater than or equal  
+    .replace(/°/g, ' C')      // Degree - just use space + C since °C is common
+    .replace(/±/g, '+/-')     // Plus-minus
+    .replace(/–/g, '-')       // En dash
+    .replace(/—/g, '-')       // Em dash
+    .replace(/'/g, "'")
+    .replace(/'/g, "'")
+    .replace(/"/g, '"')
+    .replace(/"/g, '"');
+}
+
+/**
+ * Load custom font untuk Unicode support (≤, ≥, °, etc.)
+ * Menggunakan Roboto font dari local atau CDN
+ */
+async function loadUnicodeFont(doc: jsPDF): Promise<void> {
+  // Jika font sudah di-load sebelumnya, langsung set
+  if (fontLoaded && fontBase64Cache) {
+    try {
+      doc.addFileToVFS("Roboto-Regular.ttf", fontBase64Cache);
+      doc.addFont("Roboto-Regular.ttf", "Roboto", "normal");
+      doc.setFont("Roboto", "normal");
+      return;
+    } catch {
+      // Jika gagal, coba load ulang
+    }
+  }
+
+  try {
+    // Coba load dari local terlebih dahulu
+    let fontBuffer: ArrayBuffer | null = null;
+    
+    // Coba load dari public folder
+    try {
+      const localResponse = await fetch("/fonts/Roboto-Regular.ttf");
+      if (localResponse.ok) {
+        fontBuffer = await localResponse.arrayBuffer();
+        console.log("Font loaded from local: /fonts/Roboto-Regular.ttf");
+      }
+    } catch {
+      console.log("Local font not found, trying CDN...");
+    }
+    
+    // Jika tidak ada di local, load dari CDN
+    if (!fontBuffer) {
+      const cdnUrls = [
+        "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf",
+        "https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5Q.ttf",
+      ];
+      
+      for (const url of cdnUrls) {
+        try {
+          const response = await fetch(url);
+          if (response.ok) {
+            fontBuffer = await response.arrayBuffer();
+            console.log(`Font loaded from CDN: ${url}`);
+            break;
+          }
+        } catch {
+          continue;
+        }
+      }
+    }
+    
+    if (!fontBuffer) {
+      throw new Error("Failed to load font from any source");
+    }
+    
+    const fontBase64 = arrayBufferToBase64(fontBuffer);
+    fontBase64Cache = fontBase64;
+    
+    // Add font ke jsPDF
+    doc.addFileToVFS("Roboto-Regular.ttf", fontBase64);
+    doc.addFont("Roboto-Regular.ttf", "Roboto", "normal");
+    doc.setFont("Roboto", "normal");
+    
+    fontLoaded = true;
+    console.log("Roboto font loaded successfully for Unicode support");
+  } catch (error) {
+    console.warn("Failed to load Roboto font, will use fallback normalization:", error);
+    fontLoaded = false;
+  }
+}
+
+/**
+ * Convert ArrayBuffer to Base64 string
+ */
+function arrayBufferToBase64(buffer: ArrayBuffer): string {
+  let binary = "";
+  const bytes = new Uint8Array(buffer);
+  const chunkSize = 8192; // Process in chunks to avoid call stack issues
+  
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    const chunk = bytes.subarray(i, Math.min(i + chunkSize, bytes.length));
+    binary += String.fromCharCode.apply(null, Array.from(chunk));
+  }
+  
+  return btoa(binary);
+}
+
+/**
+ * Helper untuk process text - gunakan normalize jika font tidak support Unicode
+ */
+function processText(text: string): string {
+  if (fontLoaded) {
+    return normalizeTextForPDF(text); // Keep Unicode if font loaded
+  }
+  return fallbackNormalize(text); // Convert to ASCII if no font
+}
+
 interface PDFGeneratorOptions {
   building: string;
   formType: FormType;
@@ -41,11 +184,23 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
     picName
   } = options;
 
-  // Create PDF
+  // Create PDF dengan Unicode support
   const doc = new jsPDF({
     orientation: "portrait",
     unit: "mm",
     format: "a4",
+    compress: true,
+    putOnlyUsedFonts: true,
+  });
+  
+  // Load custom font untuk Unicode support (≤, ≥, °, etc.)
+  await loadUnicodeFont(doc);
+  
+  // Set encoding untuk Unicode support
+  doc.setProperties({
+    title: `Laporan ${formType}`,
+    author: "Telkom Indonesia",
+    creator: "Property Maintenance System",
   });
 
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -69,7 +224,9 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
   }
 
   // 2. Judul - Jenis Laporan + Periode (ALIGN KIRI, di bawah logo)
-  doc.setFont("helvetica", "bold");
+  // Gunakan Roboto jika tersedia untuk Unicode support
+  const fontFamily = fontLoaded ? "Roboto" : "helvetica";
+  doc.setFont(fontFamily, "bold");
   doc.setFontSize(12); // Dikecilkan dari 14 ke 12
   
   // Parse formType untuk menghilangkan duplikasi periode
@@ -100,7 +257,7 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
   yPos += 10;
 
   // 3. Info Header (SEMUA BOLD)
-  doc.setFont("helvetica", "bold"); // Set bold untuk seluruh info header
+  doc.setFont(fontFamily, "bold"); // Set bold untuk seluruh info header
   doc.setFontSize(9); // Dikecilkan dari 10 ke 9
 
   // Minggu/Tanggal
@@ -139,13 +296,13 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
   doc.text(`: ${idPerangkat || ""}`, 80, yPos);
   yPos += 10;
 
-  // 4. Tabel
+  // 4. Tabel - Process text untuk handle Unicode characters
   const tableData = entries.map((entry, idx) => [
     (idx + 1).toString(),
-    entry["Item Checklist"],
-    entry["Tolak Ukur"],
-    entry.jawaban,
-    entry.deskripsi,
+    processText(entry["Item Checklist"]),
+    processText(entry["Tolak Ukur"]),
+    processText(entry.jawaban),
+    processText(entry.deskripsi),
   ]);
 
   let finalY = yPos;
@@ -161,7 +318,7 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
       overflow: "linebreak",
       halign: "left",
       valign: "middle",
-      minCellHeight: 20,
+      minCellHeight: 35, // Diperbesar untuk foto dengan timestamp
       lineColor: [0, 0, 0],
       lineWidth: 0.3, // Ketebalan garis konsisten
     },
@@ -173,14 +330,24 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
       valign: "middle",
       lineColor: [0, 0, 0],
       lineWidth: 0.3, // SAMA dengan body, bukan 0.5
+      minCellHeight: 10, // Header tidak perlu tinggi
+    },
+    // Konfigurasi margin untuk page break yang lebih baik
+    margin: { top: 15, right: 10, bottom: 15, left: 10 },
+    // Set font untuk autoTable menggunakan hook
+    didParseCell: (data: any) => {
+      // Gunakan Roboto font jika tersedia untuk Unicode support
+      if (fontLoaded) {
+        data.cell.styles.font = "Roboto";
+      }
     },
     columnStyles: {
       0: { cellWidth: 10, halign: "center" }, // No
-      1: { cellWidth: 50 }, // Item Checklist
-      2: { cellWidth: 35 }, // Tolak Ukur
-      3: { cellWidth: 25, halign: "center" }, // Jawaban
-      4: { cellWidth: 35 }, // Deskripsi
-      5: { cellWidth: 30, halign: "center" }, // Foto
+      1: { cellWidth: 45 }, // Item Checklist - sedikit dikurangi
+      2: { cellWidth: 30 }, // Tolak Ukur - sedikit dikurangi
+      3: { cellWidth: 22, halign: "center" }, // Jawaban - sedikit dikurangi
+      4: { cellWidth: 33 }, // Deskripsi - sedikit dikurangi
+      5: { cellWidth: 45, halign: "center" }, // Foto - diperbesar untuk timestamp
     },
     didDrawCell: (data: any) => {
       // Tambahkan foto di kolom ke-6 (index 5)
@@ -190,8 +357,9 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
 
         if (entry?.photoDataUrl) {
           try {
-            const imgWidth = 25;
-            const imgHeight = 18;
+            // Ukuran foto diperbesar agar timestamp terlihat jelas
+            const imgWidth = 40;
+            const imgHeight = 30;
             const x = data.cell.x + (data.cell.width - imgWidth) / 2;
             const y = data.cell.y + (data.cell.height - imgHeight) / 2;
 
@@ -240,7 +408,7 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
 
   // Kolom Kiri - Mengetahui/menyetujui (BOLD)
   const leftX = 30;
-  doc.setFont("helvetica", "bold"); // BOLD
+  doc.setFont(fontFamily, "bold"); // BOLD - gunakan Roboto untuk Unicode
   doc.setFontSize(10);
   doc.text("Mengetahui/ menyetujui,", leftX, yPos, { align: "center" });
 
@@ -361,7 +529,7 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
   yPos += 25;
 
   // Nama dengan underline (kiri) - gunakan nama dari props
-  doc.setFont("helvetica", "normal");
+  doc.setFont(fontFamily, "normal"); // gunakan Roboto untuk Unicode
   doc.setFontSize(10);
   const leftNameWidth = doc.getTextWidth(leftSignatureName);
   doc.text(leftSignatureName, leftX, yPos, { align: "center" });

@@ -46,6 +46,7 @@ import {
   Camera,
   AlertCircle,
   CalendarIcon,
+  Clock,
 } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
@@ -82,6 +83,7 @@ export default function ReportTable({
   const [idPerangkat, setIdPerangkat] = React.useState("");
   const [autoFill, setAutoFill] = React.useState(false);
   const [hasAutoFilled, setHasAutoFilled] = React.useState(false);
+  const [timestampEnabled, setTimestampEnabled] = React.useState(false);
   const [missingPhotoIndex, setMissingPhotoIndex] = React.useState<number>(-1);
   const [templateData, setTemplateData] = React.useState<FormTemplate | null>(
     null
@@ -289,10 +291,120 @@ export default function ReportTable({
     return itemName.includes("catatan kesimpulan") || itemName.includes("catatan rekomendasi");
   }
 
-  async function onChangePhoto(index: number, file?: File) {
+  /**
+   * Add timestamp overlay to image
+   * Timestamp format: DD/MM/YYYY HH:mm:ss
+   * Position: bottom-left corner
+   */
+  async function addTimestampToImage(file: File): Promise<File> {
+    return new Promise((resolve, reject) => {
+      const img = document.createElement('img');
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      if (!ctx) {
+        reject(new Error('Could not get canvas context'));
+        return;
+      }
+
+      img.onload = () => {
+        // Set canvas size to match image
+        canvas.width = img.width;
+        canvas.height = img.height;
+        
+        // Draw original image
+        ctx.drawImage(img, 0, 0);
+        
+        // Get current date/time
+        const now = new Date();
+        const timestamp = `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+        
+        // Calculate font size based on image dimensions (responsive) - diperbesar untuk PDF
+        const fontSize = Math.max(Math.min(img.width, img.height) * 0.06, 24);
+        const padding = fontSize * 0.5;
+        
+        // Set font style
+        ctx.font = `bold ${fontSize}px Arial, sans-serif`;
+        
+        // Measure text width
+        const textMetrics = ctx.measureText(timestamp);
+        const textWidth = textMetrics.width;
+        const textHeight = fontSize;
+        
+        // Position: bottom-left with padding
+        const x = padding;
+        const y = img.height - padding;
+        
+        // Draw semi-transparent background for better readability
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+        ctx.fillRect(
+          x - padding * 0.5,
+          y - textHeight,
+          textWidth + padding,
+          textHeight + padding * 0.5
+        );
+        
+        // Draw text with shadow for better visibility
+        ctx.fillStyle = '#FFFFFF';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+        ctx.shadowBlur = 2;
+        ctx.shadowOffsetX = 1;
+        ctx.shadowOffsetY = 1;
+        ctx.fillText(timestamp, x, y - padding * 0.25);
+        
+        // Reset shadow
+        ctx.shadowColor = 'transparent';
+        ctx.shadowBlur = 0;
+        
+        // Convert canvas to blob
+        canvas.toBlob(
+          (blob) => {
+            if (blob) {
+              const timestampedFile = new File([blob], file.name, {
+                type: 'image/jpeg',
+                lastModified: Date.now(),
+              });
+              resolve(timestampedFile);
+            } else {
+              reject(new Error('Failed to create blob'));
+            }
+          },
+          'image/jpeg',
+          0.9
+        );
+      };
+
+      img.onerror = () => {
+        reject(new Error('Failed to load image'));
+      };
+
+      // Load image from file
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        img.src = e.target?.result as string;
+      };
+      reader.onerror = () => reject(new Error('Failed to read file'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function onChangePhoto(index: number, file?: File, fromCamera: boolean = false) {
     if (!file) return;
     try {
-      const compressed = await compressImage(file);
+      let processedFile = file;
+      
+      // Add timestamp if enabled and photo is from camera
+      if (timestampEnabled && fromCamera) {
+        try {
+          processedFile = await addTimestampToImage(file);
+          toast.success("Timestamp ditambahkan ke foto");
+        } catch (err) {
+          console.error("Failed to add timestamp:", err);
+          // Continue with original file if timestamp fails
+        }
+      }
+      
+      const compressed = await compressImage(processedFile);
       const reader = new FileReader();
       reader.onload = () => {
         const dataUrl = reader.result as string;
@@ -402,19 +514,45 @@ export default function ReportTable({
             </p>
           </div>
 
-          <div className="flex items-center gap-3 p-3 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 rounded-lg border border-blue-200 dark:border-blue-800">
-            <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-            <Label
-              htmlFor="autofill"
-              className="text-sm font-medium cursor-pointer"
-            >
-              Autofill
-            </Label>
-            <Switch
-              id="autofill"
-              checked={autoFill}
-              onCheckedChange={setAutoFill}
-            />
+          <div className="flex flex-wrap items-center gap-3">
+            {/* Autofill Toggle */}
+            <div className="flex items-center gap-3 p-3 bg-linear-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 rounded-lg border border-blue-200 dark:border-blue-800">
+              <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              <Label
+                htmlFor="autofill"
+                className="text-sm font-medium cursor-pointer"
+              >
+                Autofill
+              </Label>
+              <Switch
+                id="autofill"
+                checked={autoFill}
+                onCheckedChange={setAutoFill}
+              />
+            </div>
+            
+            {/* Timestamp Toggle */}
+            <div className="flex items-center gap-3 p-3 bg-linear-to-r from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 rounded-lg border border-amber-200 dark:border-amber-800">
+              <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              <Label
+                htmlFor="timestamp"
+                className="text-sm font-medium cursor-pointer"
+              >
+                Timestamp
+              </Label>
+              <Switch
+                id="timestamp"
+                checked={timestampEnabled}
+                onCheckedChange={(checked) => {
+                  setTimestampEnabled(checked);
+                  if (checked) {
+                    toast.success("Timestamp diaktifkan - Foto kamera akan diberi timestamp");
+                  } else {
+                    toast.info("Timestamp dinonaktifkan");
+                  }
+                }}
+              />
+            </div>
           </div>
         </div>
 
@@ -549,7 +687,7 @@ export default function ReportTable({
                                 accept="image/*"
                                 className="hidden"
                                 onChange={(e) =>
-                                  onChangePhoto(idx, e.target.files?.[0])
+                                  onChangePhoto(idx, e.target.files?.[0], false)
                                 }
                               />
                             </Label>
@@ -557,7 +695,11 @@ export default function ReportTable({
                             {/* Camera Button - Opens native camera app on mobile */}
                             <Label
                               htmlFor={`camera-${idx}`}
-                              className="cursor-pointer inline-flex items-center justify-center gap-1 text-xs font-medium rounded-lg border border-blue-300 dark:border-blue-600 bg-blue-50 dark:bg-blue-900/30 px-2 py-1.5 sm:py-2 hover:bg-blue-100 dark:hover:bg-blue-900/50 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-150 active:scale-95 flex-1"
+                              className={`cursor-pointer inline-flex items-center justify-center gap-1 text-xs font-medium rounded-lg border px-2 py-1.5 sm:py-2 transition-all duration-150 active:scale-95 flex-1 ${
+                                timestampEnabled 
+                                  ? "border-amber-300 dark:border-amber-600 bg-amber-50 dark:bg-amber-900/30 hover:bg-amber-100 dark:hover:bg-amber-900/50 hover:border-amber-400 dark:hover:border-amber-500"
+                                  : "border-blue-300 dark:border-blue-600 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 hover:border-blue-400 dark:hover:border-blue-500"
+                              }`}
                             >
                               <input
                                 id={`camera-${idx}`}
@@ -568,7 +710,7 @@ export default function ReportTable({
                                 onChange={async (e) => {
                                   const file = e.target.files?.[0];
                                   if (file) {
-                                    await onChangePhoto(idx, file);
+                                    await onChangePhoto(idx, file, true);
                                     // Reset input so the same file can be selected again
                                     e.target.value = "";
                                   }
@@ -576,6 +718,7 @@ export default function ReportTable({
                               />
                               <Camera className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                               <span className="hidden sm:inline">Kamera</span>
+                              {timestampEnabled && <Clock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-amber-600 dark:text-amber-400" />}
                             </Label>
                           </div>
 
@@ -625,7 +768,10 @@ export default function ReportTable({
                 Export PDF
               </Button>
             </DialogTrigger>
-            <DialogContent className="w-[calc(100%-2rem)] sm:max-w-lg max-h-[90vh] overflow-y-auto">
+            <DialogContent 
+              className="w-[calc(100%-2rem)] sm:max-w-lg max-h-[90vh] overflow-y-auto"
+              onOpenAutoFocus={(e) => e.preventDefault()}
+            >
               <DialogHeader>
                 <DialogTitle className="text-lg sm:text-xl">
                   Konfirmasi Export PDF
