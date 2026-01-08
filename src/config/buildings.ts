@@ -1,4 +1,5 @@
 export const buildings = [
+  // Area Bandung
   "TCU 1",
   "TCU 2",
   "TCU 3",
@@ -13,4 +14,17 @@ export const buildings = [
   "Plasa Supratman",
   "STO Gegerkalong",
   "Plasa Cimahi",
+  // Area Priangan Timur
+  "Kantor Witel Jabar Timur",
+  "Plasa Cirebon",
+  "Plasa Indramayu",
+  "Plasa Ciamis",
+  "Garut Centrum Pramuka",
+  "GT Plasa Telkom Tasikmalaya",
+  "STO Tasikmalaya",
+  "Plasa Telkom Garut",
+  // Area Priangan Barat
+  "GT Cianjur STO Centrum",
+  "Datel Cianjur",
+  "Kantor Witel Jabar Selatan",
 ] as const;

@@ -166,7 +166,12 @@ interface PDFGeneratorOptions {
   picName?: string;
 }
 
-export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> {
+export interface PDFGeneratorResult {
+  doc: jsPDF;
+  warnings: string[];
+}
+
+export async function generatePDF(options: PDFGeneratorOptions): Promise<PDFGeneratorResult> {
   const { 
     building, 
     formType, 
@@ -183,6 +188,9 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
     manarName,
     picName
   } = options;
+
+  // Array untuk menyimpan warning messages
+  const warnings: string[] = [];
 
   // Create PDF dengan Unicode support
   const doc = new jsPDF({
@@ -426,6 +434,7 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
     // Mapping untuk file signature yang spesifik
     // Normalize semua nama ke uppercase dan trim whitespace untuk matching
     const signatureFileMap: Record<string, string> = {
+      // Area Bandung
       "AMIRUDDIN": "/TTD PA AMIR.jpg",
       "HERRIYANTO": "/HERIYANTO.jpg",
       "GUNAWAN": "/GUNAWAN.png",
@@ -433,6 +442,16 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
       "SIGIT RULLY": "/SIGIT_RULLY.png",
       "RANDI ROMDONI": "/RANDI_ROMDONI.png",
       "ASEP SOLEH": "/ASEP_SOLEH.png",
+      // Area Priangan Timur
+      "MUHAMMAD ADRIANSYAH": "/MUHAMMAD_ADRIANSYAH.png",
+      "MAHSUN EFFENDI": "/MAHSUN_EFFENDI.png",
+      "DENI HAMDANI": "/DENI_HAMDANI.png",
+      "RUDI SEPTIANA": "/RUDI_SEPTIANA.png",
+      "SAMSUL WIRAHMANA": "/SAMSUL_WIRAHMANA.png",
+      // Area Priangan Barat
+      "NANANG EKO P": "/NANANG_EKO_P.png",
+      "MULYADI DININGRAT": "/MULYADI_DININGRAT.png",
+      "JUANDI": "/JUANDI.png",
     };
 
     // Normalize nama untuk matching (uppercase + trim)
@@ -455,30 +474,19 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
           });
           doc.addImage(ttdManarUrl, ttdManarExt, leftX - 15, yPos, 30, 20);
         } else {
-          throw new Error('File not found');
+          // File tidak ditemukan - kosongkan dan beri warning
+          warnings.push(`Tanda tangan Manager (${leftSignatureName}) tidak tersedia`);
+          console.warn(`Signature file not found: ${ttdManarFilename}`);
         }
-      } catch {
-        // Fallback ke default jika file tidak ditemukan
-        const ttdAmirResponse = await fetch("/TTD PA AMIR.jpg");
-        const ttdAmirBlob = await ttdAmirResponse.blob();
-        const ttdAmirUrl = await new Promise<string>((resolve) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result as string);
-          reader.readAsDataURL(ttdAmirBlob);
-        });
-        doc.addImage(ttdAmirUrl, "JPEG", leftX - 15, yPos, 30, 20);
+      } catch (err) {
+        // Error saat fetch - kosongkan dan beri warning
+        warnings.push(`Tanda tangan Manager (${leftSignatureName}) tidak tersedia`);
+        console.warn(`Failed to fetch signature: ${ttdManarFilename}`, err);
       }
     } else {
-      // Jika tidak ada di mapping, langsung gunakan default
-      console.warn(`Signature file not found in mapping for: ${leftSignatureName}, using default`);
-      const ttdAmirResponse = await fetch("/TTD PA AMIR.jpg");
-      const ttdAmirBlob = await ttdAmirResponse.blob();
-      const ttdAmirUrl = await new Promise<string>((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
-        reader.readAsDataURL(ttdAmirBlob);
-      });
-      doc.addImage(ttdAmirUrl, "JPEG", leftX - 15, yPos, 30, 20);
+      // Tidak ada di mapping - kosongkan dan beri warning
+      warnings.push(`Tanda tangan Manager (${leftSignatureName}) tidak tersedia`);
+      console.warn(`Signature file not found in mapping for: ${leftSignatureName}`);
     }
 
     // TTD PIC (kanan)
@@ -497,30 +505,19 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
           });
           doc.addImage(ttdPicUrl, ttdPicExt, rightX - 15, yPos, 30, 20);
         } else {
-          throw new Error('File not found');
+          // File tidak ditemukan - kosongkan dan beri warning
+          warnings.push(`Tanda tangan PIC (${rightSignatureName}) tidak tersedia`);
+          console.warn(`Signature file not found: ${ttdPicFilename}`);
         }
-      } catch {
-        // Fallback ke default jika file tidak ditemukan
-        const ttdHeriyantoResponse = await fetch("/HERIYANTO.jpg");
-        const ttdHeriyantoBlob = await ttdHeriyantoResponse.blob();
-        const ttdHeriyantoUrl = await new Promise<string>((resolve) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result as string);
-          reader.readAsDataURL(ttdHeriyantoBlob);
-        });
-        doc.addImage(ttdHeriyantoUrl, "JPEG", rightX - 15, yPos, 30, 20);
+      } catch (err) {
+        // Error saat fetch - kosongkan dan beri warning
+        warnings.push(`Tanda tangan PIC (${rightSignatureName}) tidak tersedia`);
+        console.warn(`Failed to fetch signature: ${ttdPicFilename}`, err);
       }
     } else {
-      // Jika tidak ada di mapping, langsung gunakan default
-      console.warn(`Signature file not found in mapping for: ${rightSignatureName}, using default`);
-      const ttdHeriyantoResponse = await fetch("/HERIYANTO.jpg");
-      const ttdHeriyantoBlob = await ttdHeriyantoResponse.blob();
-      const ttdHeriyantoUrl = await new Promise<string>((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
-        reader.readAsDataURL(ttdHeriyantoBlob);
-      });
-      doc.addImage(ttdHeriyantoUrl, "JPEG", rightX - 15, yPos, 30, 20);
+      // Tidak ada di mapping - kosongkan dan beri warning
+      warnings.push(`Tanda tangan PIC (${rightSignatureName}) tidak tersedia`);
+      console.warn(`Signature file not found in mapping for: ${rightSignatureName}`);
     }
   } catch (err) {
     console.error("Failed to load signatures:", err);
@@ -553,8 +550,8 @@ export async function generatePDF(options: PDFGeneratorOptions): Promise<jsPDF> 
   yPos += 5;
 
   // Jabatan
-  doc.text("MANAGER AREA BANDUNG", leftX, yPos, { align: "center" });
+  doc.text("MANAGER AREA", leftX, yPos, { align: "center" });
   doc.text(" PIC", rightX, yPos, { align: "center" });
 
-  return doc;
+  return { doc, warnings };
 }

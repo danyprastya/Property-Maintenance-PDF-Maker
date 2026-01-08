@@ -41,9 +41,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cn, compressImage, getFormTemplate, checkTemplateAvailability, TemplateNotAvailableError, formTypeLabels } from "@/lib/utils";
-import { buildings } from "@/config/constants";
+import { areas } from "@/config/constants";
 import { formTypes } from "@/config/form-types";
-import { getAvailableUnits, getBuildingEquipmentData } from "@/config/building-data";
+import { getAvailableUnits, getBuildingEquipmentData, getBuildingsByArea, type AreaType } from "@/config/building-data";
 import { format } from "date-fns";
 import type {
   FormEntry,
@@ -78,7 +78,7 @@ export default function ReportFormNew({
   const previewRef = React.useRef<HTMLDivElement>(null);
 
   const [formState, setFormState] = useState<FormState>({
-    building: buildings[0],
+    building: "",
     formType: "",
     periodType: "",
     week: "",
@@ -87,11 +87,18 @@ export default function ReportFormNew({
   });
 
   // Dua variabel terpisah untuk gedung
+  const [selectedArea, setSelectedArea] = useState<AreaType | "">("");
   const [selectedPresetBuilding, setSelectedPresetBuilding] = useState<string>(
-    buildings[0]
-  ); // Dari dropdown
+    ""
+  ); // Dari dropdown - kosong sampai area dipilih
   const [manualBuildingInput, setManualBuildingInput] = useState<string>(""); // Dari input manual
   const [isBuildingDropdownOpen, setIsBuildingDropdownOpen] = useState(false);
+
+  // Filtered buildings berdasarkan area yang dipilih
+  const filteredBuildings = React.useMemo(() => {
+    if (!selectedArea) return [];
+    return getBuildingsByArea(selectedArea);
+  }, [selectedArea]);
 
   // Computed value: Prioritas manual input, fallback ke preset
   const finalBuildingName = manualBuildingInput || selectedPresetBuilding;
@@ -122,6 +129,14 @@ export default function ReportFormNew({
   // Load form template when type changes
   async function onGenerateForm(e: React.FormEvent) {
     e.preventDefault();
+    if (!selectedArea) {
+      toast.error("Pilih area terlebih dahulu");
+      return;
+    }
+    if (!finalBuildingName) {
+      toast.error("Pilih gedung terlebih dahulu");
+      return;
+    }
     if (!formState.formType) {
       toast.error("Pilih jenis laporan terlebih dahulu");
       return;
@@ -289,6 +304,41 @@ export default function ReportFormNew({
       >
         <Card className="p-4 sm:p-6 border border-gray-200 dark:border-gray-700/50 h-full shadow-sm">
           <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
+            {/* Dropdown Area */}
+            <div className="space-y-2">
+              <Label
+                htmlFor="area"
+                className="text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-100"
+              >
+                Area
+              </Label>
+              <Select
+                value={selectedArea}
+                onValueChange={(v) => {
+                  setSelectedArea(v as AreaType);
+                  setSelectedPresetBuilding(""); // Reset gedung when area changes
+                  setManualBuildingInput(""); // Reset manual input when area changes
+                  setUnitNumber(""); // Reset unit number when area changes
+                }}
+              >
+                <SelectTrigger className="h-9 sm:h-10 text-sm transition-all duration-150 hover:border-gray-400 dark:hover:border-gray-500">
+                  <SelectValue placeholder="Pilih area" />
+                </SelectTrigger>
+                <SelectContent>
+                  {areas.map((area) => (
+                    <SelectItem
+                      key={area}
+                      value={area}
+                      className="cursor-pointer text-sm"
+                    >
+                      {area}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Dropdown Gedung */}
             <div className="space-y-2">
               <Label
                 htmlFor="building"
@@ -305,12 +355,16 @@ export default function ReportFormNew({
                 }}
                 open={isBuildingDropdownOpen}
                 onOpenChange={setIsBuildingDropdownOpen}
+                disabled={!selectedArea}
               >
-                <SelectTrigger className="h-9 sm:h-10 text-sm transition-all duration-150 hover:border-gray-400 dark:hover:border-gray-500">
+                <SelectTrigger className={cn(
+                  "h-9 sm:h-10 text-sm transition-all duration-150 hover:border-gray-400 dark:hover:border-gray-500",
+                  !selectedArea && "opacity-50 cursor-not-allowed"
+                )}>
                   {finalBuildingName ? (
                     <span className="text-sm">{finalBuildingName}</span>
                   ) : (
-                    <SelectValue placeholder="Pilih gedung" />
+                    <SelectValue placeholder={selectedArea ? "Pilih gedung" : "Pilih area terlebih dahulu"} />
                   )}
                 </SelectTrigger>
                 <SelectContent className="max-h-[300px] overflow-y-auto">
@@ -357,7 +411,7 @@ export default function ReportFormNew({
                   </div>
 
                   {/* Predefined Building Options */}
-                  {buildings.map((b) => (
+                  {filteredBuildings.map((b) => (
                     <SelectItem
                       key={b}
                       value={b}

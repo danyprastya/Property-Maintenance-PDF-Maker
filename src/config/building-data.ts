@@ -11,7 +11,10 @@ export interface BuildingEquipmentData {
   pic: string;
 }
 
+export type AreaType = "Bandung" | "Priangan Barat" | "Priangan Timur";
+
 export interface BuildingData {
+  area: AreaType;
   kodeGedung: string;
   lokasiGedung: string;
   manar: string;
@@ -45,6 +48,7 @@ export interface BuildingData {
 
 export const buildingDataMap: Record<string, BuildingData> = {
   "TCU 1": {
+    area: "Bandung",
     kodeGedung: "1611",
     lokasiGedung: "TCU 1",
     manar: "AMIRUDDIN",
@@ -103,6 +107,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "TCU 2": {
+    area: "Bandung",
     kodeGedung: "1618",
     lokasiGedung: "TCU 2",
     manar: "AMIRUDDIN",
@@ -161,6 +166,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "TCU 3": {
+    area: "Bandung",
     kodeGedung: "1608",
     lokasiGedung: "TCU 3",
     manar: "AMIRUDDIN",
@@ -246,6 +252,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "GD Menara Risti Idex": {
+    area: "Bandung",
     kodeGedung: "1547",
     lokasiGedung: "GD Menara Risti Idex",
     manar: "AMIRUDDIN",
@@ -358,6 +365,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "Telkom Cisanggarung": {
+    area: "Bandung",
     kodeGedung: "1231",
     lokasiGedung: "Telkom Cisanggarung",
     manar: "AMIRUDDIN",
@@ -425,6 +433,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "Assessment Center Indonesia 71": {
+    area: "Bandung",
     kodeGedung: "01599",
     lokasiGedung: "JL. HEGARMANAH NO. 71 BANDUNG",
     manar: "AMIRUDDIN",
@@ -458,6 +467,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "Assessment Center Indonesia Tendean": {
+    area: "Bandung",
     kodeGedung: "01598",
     lokasiGedung: "JL. KAPTEN TENDEAN NO. 1 BANDUNG",
     manar: "AMIRUDDIN",
@@ -516,6 +526,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "GT Lembong": {
+    area: "Bandung",
     kodeGedung: "01329",
     lokasiGedung: "GEDUNG KANTOR TELKOM LEMBONG GD. E JL. LEMBONG NO 11-15 BANDUNG",
     manar: "AMIRUDDIN",
@@ -551,6 +562,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "STO Cicadas": {
+    area: "Bandung",
     kodeGedung: "1296",
     lokasiGedung: "Jl. A. Yani No.698, Cicaheum, Kec. Kiaracondong, Kota Bandung",
     manar: "AMIRUDDIN",
@@ -577,6 +589,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "GMP Bandung": {
+    area: "Bandung",
     kodeGedung: "1212",
     lokasiGedung: "GMP Bandung",
     manar: "AMIRUDDIN",
@@ -696,6 +709,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "GT Rajawali": {
+    area: "Bandung",
     kodeGedung: "1552",
     lokasiGedung: "GT. RAJAWALI GEDUNG B WITEL BANDUNG BARAT",
     manar: "AMIRUDDIN",
@@ -722,6 +736,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "Plasa Supratman": {
+    area: "Bandung",
     kodeGedung: "1323",
     lokasiGedung: "JL. SUPRATMAN NO. 62 BANDUNG",
     manar: "AMIRUDDIN",
@@ -780,6 +795,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "STO Gegerkalong": {
+    area: "Bandung",
     kodeGedung: "01601",
     lokasiGedung: "JL. GEGERKALONG HILIR NO. 65",
     manar: "AMIRUDDIN",
@@ -806,6 +822,7 @@ export const buildingDataMap: Record<string, BuildingData> = {
     },
   },
   "Plasa Cimahi": {
+    area: "Bandung",
     kodeGedung: "01556",
     lokasiGedung: "PLASA BAROS CIMAHI",
     manar: "AMIRUDDIN",
@@ -850,6 +867,511 @@ export const buildingDataMap: Record<string, BuildingData> = {
           idPerangkat: "155603LV01-34077",
           manar: "AMIRUDDIN",
           pic: "ASEP SOLEH",
+        },
+      },
+    },
+  },
+  // ============= AREA PRIANGAN TIMUR =============
+  "Kantor Witel Jabar Timur": {
+    area: "Priangan Timur",
+    kodeGedung: "1247",
+    lokasiGedung: "KANTOR WITEL JABAR TIMUR",
+    manar: "MAHSUN EFFENDI",
+    pic: "MUHAMMAD ADRIANSYAH",
+    equipment: {
+      Trafo: {
+        Bulanan: {
+          kodeGedung: "1247",
+          lokasiGedung: "KANTOR WITEL JABAR TIMUR",
+          idPerangkat: "124703TR01-71452",
+          manar: "MAHSUN EFFENDI",
+          pic: "MUHAMMAD ADRIANSYAH",
+        },
+      },
+      CubicleSwitch_Gear: {
+        Bulanan: {
+          kodeGedung: "1247",
+          lokasiGedung: "KANTOR WITEL JABAR TIMUR",
+          idPerangkat: "124703MV01-71451",
+          manar: "MAHSUN EFFENDI",
+          pic: "MUHAMMAD ADRIANSYAH",
+        },
+      },
+    },
+  },
+  "Plasa Cirebon": {
+    area: "Priangan Timur",
+    kodeGedung: "1246",
+    lokasiGedung: "PLASA CIREBON (PLASA SILIWANGI CIREBON)",
+    manar: "MAHSUN EFFENDI",
+    pic: "MUHAMMAD ADRIANSYAH",
+    equipment: {
+      Genset: {
+        Mingguan: {
+          kodeGedung: "1246",
+          lokasiGedung: "PLASA CIREBON (PLASA SILIWANGI CIREBON)",
+          idPerangkat: "124603GS01-71611",
+          manar: "MAHSUN EFFENDI",
+          pic: "MUHAMMAD ADRIANSYAH",
+        },
+        Bulanan: {
+          kodeGedung: "1246",
+          lokasiGedung: "PLASA CIREBON (PLASA SILIWANGI CIREBON)",
+          idPerangkat: "124603GS01-71611",
+          manar: "MAHSUN EFFENDI",
+          pic: "MUHAMMAD ADRIANSYAH",
+        },
+      },
+      COSATFAMF: {
+        Bulanan: {
+          kodeGedung: "1246",
+          lokasiGedung: "PLASA CIREBON (PLASA SILIWANGI CIREBON)",
+          idPerangkat: "124603GS01-71456",
+          manar: "MAHSUN EFFENDI",
+          pic: "MUHAMMAD ADRIANSYAH",
+        },
+      },
+    },
+  },
+  "Plasa Indramayu": {
+    area: "Priangan Timur",
+    kodeGedung: "1198",
+    lokasiGedung: "PLASA INDRAMAYU",
+    manar: "MAHSUN EFFENDI",
+    pic: "MUHAMMAD ADRIANSYAH",
+    equipment: {
+      Genset: {
+        Mingguan: {
+          kodeGedung: "1198",
+          lokasiGedung: "PLASA INDRAMAYU",
+          idPerangkat: "119803GS01-66124",
+          manar: "MAHSUN EFFENDI",
+          pic: "MUHAMMAD ADRIANSYAH",
+        },
+        Bulanan: {
+          kodeGedung: "1198",
+          lokasiGedung: "PLASA INDRAMAYU",
+          idPerangkat: "119803GS01-66124",
+          manar: "MAHSUN EFFENDI",
+          pic: "MUHAMMAD ADRIANSYAH",
+        },
+      },
+      MDPSDP: {
+        Mingguan: {
+          kodeGedung: "1198",
+          lokasiGedung: "PLASA INDRAMAYU",
+          idPerangkat: "119803LV01-71471",
+          manar: "MAHSUN EFFENDI",
+          pic: "MUHAMMAD ADRIANSYAH",
+        },
+        Bulanan: {
+          kodeGedung: "1198",
+          lokasiGedung: "PLASA INDRAMAYU",
+          idPerangkat: "119803LV01-71471",
+          manar: "MAHSUN EFFENDI",
+          pic: "MUHAMMAD ADRIANSYAH",
+        },
+      },
+      COSATFAMF: {
+        Bulanan: {
+          kodeGedung: "1198",
+          lokasiGedung: "PLASA INDRAMAYU",
+          idPerangkat: "119803GS01-71472",
+          manar: "MAHSUN EFFENDI",
+          pic: "MUHAMMAD ADRIANSYAH",
+        },
+      },
+      Penyalur_Petir: {
+        Bulanan: {
+          kodeGedung: "1198",
+          lokasiGedung: "PLASA INDRAMAYU",
+          idPerangkat: "119803PP01-71473",
+          manar: "MAHSUN EFFENDI",
+          pic: "MUHAMMAD ADRIANSYAH",
+        },
+      },
+    },
+  },
+  "Plasa Ciamis": {
+    area: "Priangan Timur",
+    kodeGedung: "1253",
+    lokasiGedung: "PLASA CIAMIS",
+    manar: "MAHSUN EFFENDI",
+    pic: "DENI HAMDANI",
+    equipment: {
+      Genset: {
+        Mingguan: {
+          kodeGedung: "1253",
+          lokasiGedung: "PLASA CIAMIS",
+          idPerangkat: "125303GS01-8868",
+          manar: "MAHSUN EFFENDI",
+          pic: "DENI HAMDANI",
+        },
+        Bulanan: {
+          kodeGedung: "1253",
+          lokasiGedung: "PLASA CIAMIS",
+          idPerangkat: "125303GS01-8868",
+          manar: "MAHSUN EFFENDI",
+          pic: "DENI HAMDANI",
+        },
+      },
+      MDPSDP: {
+        Mingguan: {
+          kodeGedung: "1253",
+          lokasiGedung: "PLASA CIAMIS",
+          idPerangkat: "125303LV01-71513",
+          manar: "MAHSUN EFFENDI",
+          pic: "DENI HAMDANI",
+        },
+        Bulanan: {
+          kodeGedung: "1253",
+          lokasiGedung: "PLASA CIAMIS",
+          idPerangkat: "125303LV01-71513",
+          manar: "MAHSUN EFFENDI",
+          pic: "DENI HAMDANI",
+        },
+      },
+      COSATFAMF: {
+        Bulanan: {
+          kodeGedung: "1253",
+          lokasiGedung: "PLASA CIAMIS",
+          idPerangkat: "125303GS01-71515",
+          manar: "MAHSUN EFFENDI",
+          pic: "DENI HAMDANI",
+        },
+      },
+      Penyalur_Petir: {
+        Bulanan: {
+          kodeGedung: "1253",
+          lokasiGedung: "PLASA CIAMIS",
+          idPerangkat: "125303PP01-71512",
+          manar: "MAHSUN EFFENDI",
+          pic: "DENI HAMDANI",
+        },
+      },
+    },
+  },
+  "Garut Centrum Pramuka": {
+    area: "Priangan Timur",
+    kodeGedung: "1341",
+    lokasiGedung: "GARUT CENTRUM PRAMUKA",
+    manar: "MAHSUN EFFENDI",
+    pic: "RUDI SEPTIANA",
+    equipment: {
+      Genset: {
+        Mingguan: {
+          kodeGedung: "1341",
+          lokasiGedung: "GARUT CENTRUM PRAMUKA",
+          idPerangkat: "134103GS01-49264",
+          manar: "MAHSUN EFFENDI",
+          pic: "RUDI SEPTIANA",
+        },
+        Bulanan: {
+          kodeGedung: "1341",
+          lokasiGedung: "GARUT CENTRUM PRAMUKA",
+          idPerangkat: "134103GS01-49264",
+          manar: "MAHSUN EFFENDI",
+          pic: "RUDI SEPTIANA",
+        },
+      },
+      MDPSDP: {
+        Mingguan: {
+          kodeGedung: "1341",
+          lokasiGedung: "GARUT CENTRUM PRAMUKA",
+          idPerangkat: "134103LV01-11276",
+          manar: "MAHSUN EFFENDI",
+          pic: "RUDI SEPTIANA",
+        },
+        Bulanan: {
+          kodeGedung: "1341",
+          lokasiGedung: "GARUT CENTRUM PRAMUKA",
+          idPerangkat: "134103LV01-11276",
+          manar: "MAHSUN EFFENDI",
+          pic: "RUDI SEPTIANA",
+        },
+      },
+      COSATFAMF: {
+        Bulanan: {
+          kodeGedung: "1341",
+          lokasiGedung: "GARUT CENTRUM PRAMUKA",
+          idPerangkat: "134103GS01-71460",
+          manar: "MAHSUN EFFENDI",
+          pic: "RUDI SEPTIANA",
+        },
+      },
+      Penyalur_Petir: {
+        Bulanan: {
+          kodeGedung: "1341",
+          lokasiGedung: "GARUT CENTRUM PRAMUKA",
+          idPerangkat: "134103PP01-71461",
+          manar: "MAHSUN EFFENDI",
+          pic: "RUDI SEPTIANA",
+        },
+      },
+    },
+  },
+  "GT Plasa Telkom Tasikmalaya": {
+    area: "Priangan Timur",
+    kodeGedung: "1269",
+    lokasiGedung: "GT PLASA TELKOM TASIKMALAYA",
+    manar: "MAHSUN EFFENDI",
+    pic: "SAMSUL WIRAHMANA",
+    equipment: {
+      Genset: {
+        Mingguan: {
+          kodeGedung: "1269",
+          lokasiGedung: "GT PLASA TELKOM TASIKMALAYA",
+          idPerangkat: "126903GS01-28593",
+          manar: "MAHSUN EFFENDI",
+          pic: "SAMSUL WIRAHMANA",
+        },
+        Bulanan: {
+          kodeGedung: "1269",
+          lokasiGedung: "GT PLASA TELKOM TASIKMALAYA",
+          idPerangkat: "126903GS01-28593",
+          manar: "MAHSUN EFFENDI",
+          pic: "SAMSUL WIRAHMANA",
+        },
+      },
+      MDPSDP: {
+        Mingguan: {
+          kodeGedung: "1269",
+          lokasiGedung: "GT PLASA TELKOM TASIKMALAYA",
+          idPerangkat: "126903LV01-28594",
+          manar: "MAHSUN EFFENDI",
+          pic: "SAMSUL WIRAHMANA",
+        },
+        Bulanan: {
+          kodeGedung: "1269",
+          lokasiGedung: "GT PLASA TELKOM TASIKMALAYA",
+          idPerangkat: "126903LV01-28594",
+          manar: "MAHSUN EFFENDI",
+          pic: "SAMSUL WIRAHMANA",
+        },
+      },
+      COSATFAMF: {
+        Bulanan: {
+          kodeGedung: "1269",
+          lokasiGedung: "GT PLASA TELKOM TASIKMALAYA",
+          idPerangkat: "126903GS01-71489",
+          manar: "MAHSUN EFFENDI",
+          pic: "SAMSUL WIRAHMANA",
+        },
+      },
+      Penyalur_Petir: {
+        Bulanan: {
+          kodeGedung: "1269",
+          lokasiGedung: "GT PLASA TELKOM TASIKMALAYA",
+          idPerangkat: "126903PP02-28595",
+          manar: "MAHSUN EFFENDI",
+          pic: "SAMSUL WIRAHMANA",
+        },
+      },
+    },
+  },
+  "STO Tasikmalaya": {
+    area: "Priangan Timur",
+    kodeGedung: "1265",
+    lokasiGedung: "STO TASIKMALAYA",
+    manar: "MAHSUN EFFENDI",
+    pic: "SAMSUL WIRAHMANA",
+    equipment: {
+      Trafo: {
+        Bulanan: {
+          kodeGedung: "1265",
+          lokasiGedung: "STO TASIKMALAYA",
+          idPerangkat: "126503TR01-71462",
+          manar: "MAHSUN EFFENDI",
+          pic: "SAMSUL WIRAHMANA",
+        },
+      },
+      CubicleSwitch_Gear: {
+        Bulanan: {
+          kodeGedung: "1265",
+          lokasiGedung: "STO TASIKMALAYA",
+          idPerangkat: "126503MV01-71463",
+          manar: "MAHSUN EFFENDI",
+          pic: "SAMSUL WIRAHMANA",
+        },
+      },
+    },
+  },
+  "Plasa Telkom Garut": {
+    area: "Priangan Timur",
+    kodeGedung: "1340",
+    lokasiGedung: "PLASA TELKOM GARUT",
+    manar: "MAHSUN EFFENDI",
+    pic: "RUDI SEPTIANA",
+    equipment: {
+      MDPSDP: {
+        Mingguan: {
+          kodeGedung: "1340",
+          lokasiGedung: "PLASA TELKOM GARUT",
+          idPerangkat: "134003LV01-71458",
+          manar: "MAHSUN EFFENDI",
+          pic: "RUDI SEPTIANA",
+        },
+        Bulanan: {
+          kodeGedung: "1340",
+          lokasiGedung: "PLASA TELKOM GARUT",
+          idPerangkat: "134003LV01-71458",
+          manar: "MAHSUN EFFENDI",
+          pic: "RUDI SEPTIANA",
+        },
+      },
+      Penyalur_Petir: {
+        Bulanan: {
+          kodeGedung: "1340",
+          lokasiGedung: "PLASA TELKOM GARUT",
+          idPerangkat: "134003PP01-71459",
+          manar: "MAHSUN EFFENDI",
+          pic: "RUDI SEPTIANA",
+        },
+      },
+    },
+  },
+  // ============= AREA PRIANGAN BARAT =============
+  "GT Cianjur STO Centrum": {
+    area: "Priangan Barat",
+    kodeGedung: "1520",
+    lokasiGedung: "GT CIANJUR STO CENTRUM",
+    manar: "NANANG EKO P",
+    pic: "MULYADI DININGRAT",
+    equipment: {
+      Trafo: {
+        Bulanan: {
+          kodeGedung: "1520",
+          lokasiGedung: "GT CIANJUR STO CENTRUM",
+          idPerangkat: "152003TR01-71464",
+          manar: "NANANG EKO P",
+          pic: "MULYADI DININGRAT",
+        },
+      },
+      CubicleSwitch_Gear: {
+        Bulanan: {
+          kodeGedung: "1520",
+          lokasiGedung: "GT CIANJUR STO CENTRUM",
+          idPerangkat: "152003MV01-71465",
+          manar: "NANANG EKO P",
+          pic: "MULYADI DININGRAT",
+        },
+      },
+    },
+  },
+  "Datel Cianjur": {
+    area: "Priangan Barat",
+    kodeGedung: "1522",
+    lokasiGedung: "DATEL CIANJUR (GT PLAZA CIANJUR)",
+    manar: "NANANG EKO P",
+    pic: "MULYADI DININGRAT",
+    equipment: {
+      Genset: {
+        Mingguan: {
+          kodeGedung: "1522",
+          lokasiGedung: "DATEL CIANJUR (GT PLAZA CIANJUR)",
+          idPerangkat: "152203GS01-8756",
+          manar: "NANANG EKO P",
+          pic: "MULYADI DININGRAT",
+        },
+        Bulanan: {
+          kodeGedung: "1522",
+          lokasiGedung: "DATEL CIANJUR (GT PLAZA CIANJUR)",
+          idPerangkat: "152203GS01-8756",
+          manar: "NANANG EKO P",
+          pic: "MULYADI DININGRAT",
+        },
+      },
+      MDPSDP: {
+        Mingguan: {
+          kodeGedung: "1522",
+          lokasiGedung: "DATEL CIANJUR (GT PLAZA CIANJUR)",
+          idPerangkat: "152203LV01-11277",
+          manar: "NANANG EKO P",
+          pic: "MULYADI DININGRAT",
+        },
+        Bulanan: {
+          kodeGedung: "1522",
+          lokasiGedung: "DATEL CIANJUR (GT PLAZA CIANJUR)",
+          idPerangkat: "152203LV01-11277",
+          manar: "NANANG EKO P",
+          pic: "MULYADI DININGRAT",
+        },
+      },
+      COSATFAMF: {
+        Bulanan: {
+          kodeGedung: "1522",
+          lokasiGedung: "DATEL CIANJUR (GT PLAZA CIANJUR)",
+          idPerangkat: "152203GS01-71469",
+          manar: "NANANG EKO P",
+          pic: "MULYADI DININGRAT",
+        },
+      },
+      Penyalur_Petir: {
+        Bulanan: {
+          kodeGedung: "1522",
+          lokasiGedung: "DATEL CIANJUR (GT PLAZA CIANJUR)",
+          idPerangkat: "152203PP01-71470",
+          manar: "NANANG EKO P",
+          pic: "MULYADI DININGRAT",
+        },
+      },
+    },
+  },
+  "Kantor Witel Jabar Selatan": {
+    area: "Priangan Barat",
+    kodeGedung: "1534",
+    lokasiGedung: "KANTOR WITEL JABAR SELATAN",
+    manar: "NANANG EKO P",
+    pic: "JUANDI",
+    equipment: {
+      Genset: {
+        Mingguan: {
+          kodeGedung: "1534",
+          lokasiGedung: "KANTOR WITEL JABAR SELATAN",
+          idPerangkat: "153403GS01-66298",
+          manar: "NANANG EKO P",
+          pic: "JUANDI",
+        },
+        Bulanan: {
+          kodeGedung: "1534",
+          lokasiGedung: "KANTOR WITEL JABAR SELATAN",
+          idPerangkat: "153403GS01-66298",
+          manar: "NANANG EKO P",
+          pic: "JUANDI",
+        },
+      },
+      MDPSDP: {
+        Mingguan: {
+          kodeGedung: "1534",
+          lokasiGedung: "KANTOR WITEL JABAR SELATAN",
+          idPerangkat: "153403LV01-71474",
+          manar: "NANANG EKO P",
+          pic: "JUANDI",
+        },
+        Bulanan: {
+          kodeGedung: "1534",
+          lokasiGedung: "KANTOR WITEL JABAR SELATAN",
+          idPerangkat: "153403LV01-71474",
+          manar: "NANANG EKO P",
+          pic: "JUANDI",
+        },
+      },
+      COSATFAMF: {
+        Bulanan: {
+          kodeGedung: "1534",
+          lokasiGedung: "KANTOR WITEL JABAR SELATAN",
+          idPerangkat: "311600",
+          manar: "NANANG EKO P",
+          pic: "JUANDI",
+        },
+      },
+      Penyalur_Petir: {
+        Bulanan: {
+          kodeGedung: "1534",
+          lokasiGedung: "KANTOR WITEL JABAR SELATAN",
+          idPerangkat: "153403PP01-71476",
+          manar: "NANANG EKO P",
+          pic: "JUANDI",
         },
       },
     },
@@ -919,4 +1441,28 @@ export function getAvailableUnits(
   }
 
   return [];
+}
+
+/**
+ * Helper function untuk mendapatkan daftar gedung berdasarkan area
+ */
+export function getBuildingsByArea(area: AreaType): string[] {
+  return Object.entries(buildingDataMap)
+    .filter(([, data]) => data.area === area)
+    .map(([name]) => name)
+    .sort();
+}
+
+/**
+ * Helper function untuk mendapatkan semua area yang tersedia
+ */
+export function getAvailableAreas(): AreaType[] {
+  return ["Bandung", "Priangan Barat", "Priangan Timur"];
+}
+
+/**
+ * Helper function untuk mendapatkan data gedung
+ */
+export function getBuildingData(building: string): BuildingData | null {
+  return buildingDataMap[building] || null;
 }

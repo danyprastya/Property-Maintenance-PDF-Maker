@@ -100,6 +100,64 @@ export default function ReportTable({
   // State untuk tanggal tanda tangan (terpisah dari tanggal laporan)
   const [signatureDate, setSignatureDate] = React.useState<Date | undefined>(undefined);
   
+  // State untuk check ketersediaan file tanda tangan
+  const [signatureAvailability, setSignatureAvailability] = React.useState<{
+    manar: boolean;
+    pic: boolean;
+  }>({ manar: true, pic: true });
+  
+  // Mapping file tanda tangan (sinkron dengan pdf-generator.ts)
+  const signatureFileMap: Record<string, string> = {
+    // Area Bandung
+    "AMIRUDDIN": "/TTD PA AMIR.jpg",
+    "HERRIYANTO": "/HERIYANTO.jpg",
+    "GUNAWAN": "/GUNAWAN.png",
+    "AANG CEPI": "/AANG_CEPI.png",
+    "SIGIT RULLY": "/SIGIT_RULLY.png",
+    "RANDI ROMDONI": "/RANDI_ROMDONI.png",
+    "ASEP SOLEH": "/ASEP_SOLEH.png",
+    // Area Priangan Timur
+    "MUHAMMAD ADRIANSYAH": "/MUHAMMAD_ADRIANSYAH.png",
+    "MAHSUN EFFENDI": "/MAHSUN_EFFENDI.png",
+    "DENI HAMDANI": "/DENI_HAMDANI.png",
+    "RUDI SEPTIANA": "/RUDI_SEPTIANA.png",
+    "SAMSUL WIRAHMANA": "/SAMSUL_WIRAHMANA.png",
+    // Area Priangan Barat
+    "NANANG EKO P": "/NANANG_EKO_P.png",
+    "MULYADI DININGRAT": "/MULYADI_DININGRAT.png",
+    "JUANDI": "/JUANDI.png",
+  };
+  
+  // Function untuk check ketersediaan file tanda tangan
+  const checkSignatureAvailability = React.useCallback(async (name: string): Promise<boolean> => {
+    if (!name) return false;
+    
+    const normalizedName = name.trim().toUpperCase();
+    const filename = signatureFileMap[normalizedName];
+    
+    if (!filename) return false;
+    
+    try {
+      const response = await fetch(filename, { method: 'HEAD' });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }, []);
+  
+  // Effect untuk check ketersediaan tanda tangan ketika nama berubah
+  React.useEffect(() => {
+    async function checkAvailability() {
+      const manarAvailable = await checkSignatureAvailability(selectedManar);
+      const picAvailable = await checkSignatureAvailability(selectedPic);
+      setSignatureAvailability({ manar: manarAvailable, pic: picAvailable });
+    }
+    
+    if (selectedManar || selectedPic) {
+      checkAvailability();
+    }
+  }, [selectedManar, selectedPic, checkSignatureAvailability]);
+  
   // Daftar nama untuk dropdown tanda tangan
   const allSignatureNames = React.useMemo(() => {
     const names = new Set<string>();
@@ -460,7 +518,7 @@ export default function ReportTable({
     setIsLoading(true);
 
     try {
-      const doc = await generatePDF({
+      const result = await generatePDF({
         building,
         formType,
         periodType,
@@ -483,7 +541,7 @@ export default function ReportTable({
         new Date(),
         "yyyy-MM-dd_HH-mm-ss"
       )}.pdf`;
-      doc.save(filename);
+      result.doc.save(filename);
 
       toast.success("PDF berhasil di-generate dan di-download");
       onExported?.();
@@ -966,6 +1024,20 @@ export default function ReportTable({
                       ))}
                     </SelectContent>
                   </Select>
+                  {/* Warning untuk Manar */}
+                  {selectedManar && !signatureAvailability.manar && (
+                    <div className="flex items-start gap-2 p-2 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-md">
+                      <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+                      <div className="text-xs space-y-0.5">
+                        <p className="text-amber-700 dark:text-amber-300 font-medium">
+                          Tanda tangan tidak tersedia
+                        </p>
+                        <p className="text-amber-600 dark:text-amber-400">
+                          PDF tetap bisa di-export, bagian tanda tangan akan dikosongkan
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 
                 {/* Tanda Tangan - PIC/Teknisi */}
@@ -985,6 +1057,20 @@ export default function ReportTable({
                       ))}
                     </SelectContent>
                   </Select>
+                  {/* Warning untuk PIC */}
+                  {selectedPic && !signatureAvailability.pic && (
+                    <div className="flex items-start gap-2 p-2 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-md">
+                      <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+                      <div className="text-xs space-y-0.5">
+                        <p className="text-amber-700 dark:text-amber-300 font-medium">
+                          Tanda tangan tidak tersedia
+                        </p>
+                        <p className="text-amber-600 dark:text-amber-400">
+                          PDF tetap bisa di-export, bagian tanda tangan akan dikosongkan
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
               <DialogFooter className="gap-2 sm:gap-0">
