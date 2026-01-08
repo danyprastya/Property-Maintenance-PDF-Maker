@@ -670,14 +670,15 @@ export default function ReportFormNew({
               variant="outline"
               onClick={() => {
                 setFormState({
-                  building: buildings[0],
+                  building: "",
                   formType: "",
                   periodType: "",
                   week: "",
                   month: "",
                   entries: [],
                 });
-                setSelectedPresetBuilding(buildings[0]);
+                setSelectedArea(""); // Reset area
+                setSelectedPresetBuilding("");
                 setManualBuildingInput("");
                 setUnitNumber(""); // Reset unit number
                 onSelectedDateChange?.(undefined); // Reset tanggal
