@@ -280,7 +280,7 @@ export default function ReportFormNew({
 
       // Clear form after successful export
       setFormState({
-        building: buildings[0],
+        building: "",
         formType: "",
         periodType: "",
         week: "",
